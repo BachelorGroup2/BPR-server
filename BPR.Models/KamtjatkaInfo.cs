@@ -8,5 +8,13 @@ namespace BPR.Models
 {
     class KamtjatkaInfo
     {
+        public int KamtjatkaInfoId { get; set; }
+        public string KamtjatkaInfoStreetName { get; set; }
+        public string KamtjatkaInfoStreetNumber { get; set; }
+        public string KamtjatkaInfoPostalCode { get; set; }
+        public string KamtjatkaInfoCity { get; set; }
+        public string KamtjatkaInfoCountry { get; set; }
+        public string KamtjatkaInforPhoneNumber { get; set; }
+        public int AdministratorId  { get; set; }
     }
 }
