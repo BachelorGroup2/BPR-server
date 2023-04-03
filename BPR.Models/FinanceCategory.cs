@@ -8,7 +8,10 @@ namespace BPR.Models
 {
     public class FinanceCategory
     {
+        [Key]
         public int FinanceCategoryId { get; set; }
+        [Required]
+        [StringLength(20)]
         public string FinanceCategoryName { get; set; }
     }
 }

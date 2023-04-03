@@ -8,10 +8,13 @@ namespace BPR.Models
 {
     public class Schedule
     {
+        [Key]
         public int ScheduleId { get; set; }
+        [Required]
         public  DateTime ScheduleFrom { get; set; }
+        [Required]
         public  DateTime ScheduleTo { get; set; }
-        public int AdministratorId { get; set; }
+        public Administrator AdministratorId { get; set; }
 
     }
 }

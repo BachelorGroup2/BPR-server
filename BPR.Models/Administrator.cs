@@ -8,10 +8,16 @@ namespace BPR.Models
 {
     class Administrator
     {
+        [Key]
         public int AdministratorId { get; set; }
+        [Required]
+        [StringLength(20, MinimumLength = 2)]
         public string AdministratorFirstName { get; set; }
         public string AdministratorSurname { get; set; }
+        [Required]
+        [EmailAddress]
         public string AdministratorEmail { get; set; }
+        [StringLength(16, MinimumLength = 6)]
         public string AdministratorPhoneNumber { get; set; }
     }
 }
