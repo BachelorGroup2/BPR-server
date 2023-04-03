@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BPR.Models
 {
-    class Appointment
+    public class Appointment
     {
         public int AppointmentId { get; set; }
         public DateTime AppointmentDateCreated { get; set; }

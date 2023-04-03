@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BPR.Models
 {
-    class Finance
+    public class Finance
     {
         public int FinanceId { get; set; }
         public string FinanceName { get; set; }

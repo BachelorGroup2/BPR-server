@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BPR.Models
 {
-    class Schedule
+    public class Schedule
     {
         public int ScheduleId { get; set; }
         public  DateTime ScheduleFrom { get; set; }
