@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BPR.Models
 {
-    class Administrator
+    public class Administrator
     {
         public int AdministratorId { get; set; }
         public string AdministratorFirstName { get; set; }
