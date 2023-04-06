@@ -1,0 +1,12 @@
+C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\BPR.Models\bin\Debug\net5.0\BPR.Models.deps.json
+C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\BPR.Models\bin\Debug\net5.0\BPR.Models.dll
+C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\BPR.Models\bin\Debug\net5.0\ref\BPR.Models.dll
+C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\BPR.Models\bin\Debug\net5.0\BPR.Models.pdb
+C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\BPR.Models\obj\Debug\net5.0\BPR.Models.csproj.AssemblyReference.cache
+C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\BPR.Models\obj\Debug\net5.0\BPR.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\BPR.Models\obj\Debug\net5.0\BPR.Models.AssemblyInfoInputs.cache
+C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\BPR.Models\obj\Debug\net5.0\BPR.Models.AssemblyInfo.cs
+C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\BPR.Models\obj\Debug\net5.0\BPR.Models.csproj.CoreCompileInputs.cache
+C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\BPR.Models\obj\Debug\net5.0\BPR.Models.dll
+C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\BPR.Models\obj\Debug\net5.0\ref\BPR.Models.dll
+C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\BPR.Models\obj\Debug\net5.0\BPR.Models.pdb
