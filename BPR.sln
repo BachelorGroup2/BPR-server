@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BPR.Models", "BPR.Models\BPR.Models.csproj", "{08C769B4-0548-4ACC-B454-EEA0D5701552}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BPR.Models", "BPR.Models\BPR.Models.csproj", "{08C769B4-0548-4ACC-B454-EEA0D5701552}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{5A95D5DA-3CDF-43DC-B7DF-84669129F67C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{08C769B4-0548-4ACC-B454-EEA0D5701552}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08C769B4-0548-4ACC-B454-EEA0D5701552}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08C769B4-0548-4ACC-B454-EEA0D5701552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A95D5DA-3CDF-43DC-B7DF-84669129F67C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A95D5DA-3CDF-43DC-B7DF-84669129F67C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A95D5DA-3CDF-43DC-B7DF-84669129F67C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A95D5DA-3CDF-43DC-B7DF-84669129F67C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
