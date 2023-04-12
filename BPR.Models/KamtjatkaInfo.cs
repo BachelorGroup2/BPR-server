@@ -29,6 +29,6 @@ namespace BPR.Models
         [Required]
         [StringLength(16, MinimumLength = 6)]
         public string KamtjatkaInforPhoneNumber { get; set; }
-        public Administrator AdministratorId  { get; set; }
+        public int AdministratorId  { get; set; }
     }
 }

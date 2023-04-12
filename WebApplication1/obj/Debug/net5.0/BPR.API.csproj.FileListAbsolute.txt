@@ -13,11 +13,9 @@ C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\WebApplication1\bin\Debug\net5.0\
 C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\WebApplication1\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\WebApplication1\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\WebApplication1\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
-C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\WebApplication1\bin\Debug\net5.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\WebApplication1\bin\Debug\net5.0\Npgsql.dll
 C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\WebApplication1\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\WebApplication1\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
-C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\WebApplication1\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\WebApplication1\bin\Debug\net5.0\BPR.Models.dll
 C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\WebApplication1\bin\Debug\net5.0\BPR.Models.pdb
 C:\Users\sandr\Desktop\VIA\Bachelor\BPR-server\WebApplication1\obj\Debug\net5.0\BPR.API.csproj.AssemblyReference.cache

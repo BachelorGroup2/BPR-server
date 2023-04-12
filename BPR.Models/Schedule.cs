@@ -15,7 +15,7 @@ namespace BPR.Models
         public  DateTime ScheduleFrom { get; set; }
         [Required]
         public  DateTime ScheduleTo { get; set; }
-        public Administrator AdministratorId { get; set; }
+        public int AdministratorId { get; set; }
 
     }
 }

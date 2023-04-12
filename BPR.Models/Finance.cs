@@ -17,7 +17,7 @@ namespace BPR.Models
         [Required]
         public string FinanceAmountOfMoney { get; set; }
         public string FinanceDescription { get; set; }
-        public Customer CustomerId { get; set; }
-        public FinanceCategory FinanceCategoryId { get; set; }
+        public int CustomerId { get; set; }
+        public int FinanceCategoryId { get; set; }
     }
 }

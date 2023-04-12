@@ -11,7 +11,7 @@ namespace BPR.Models
     {
         [Key]
         public int RoomBookingId { get; set; }
-        public Room RoomId { get; set; }
-        public Customer CustomerId { get; set; }
+        public int RoomId { get; set; }
+        public int CustomerId { get; set; }
     }
 }

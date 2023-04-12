@@ -14,6 +14,6 @@ namespace BPR.Models
         [Required]
         public string FacilityName { get; set; }
         public string FacilityDescription { get; set; }
-        public KamtjatkaInfo KamtjatkaInfoId { get; set; }
+        public int KamtjatkaInfoId { get; set; }
     }
 }

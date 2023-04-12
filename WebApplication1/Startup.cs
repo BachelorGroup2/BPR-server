@@ -23,9 +23,9 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             // uzycie DBConnection w appsettings.json
-            //services.AddDbContext<MyDBContext>(options =>
-            //options.UseNpgsql(Configuration.GetConnectionString("DBConnection")));
-            services.AddDbContext<MyDBContext>(o => o.UseNpgsql("Data source=BPR Kamtjatka"));
+            services.AddDbContext<MyDBContext>(options =>
+            options.UseNpgsql(Configuration.GetConnectionString("DBConnection")));
+            //services.AddDbContext<MyDBContext>(o => o.UseNpgsql("Data source=BPR Kamtjatka"));
             services.AddControllers();
              
         }

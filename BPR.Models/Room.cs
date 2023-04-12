@@ -13,6 +13,6 @@ namespace BPR.Models
         public int RoomId { get; set; }
         [Required]
         public string RoomNumber { get; set; }
-        public RoomCategory RoomCategoryId { get; set; }
+        public int RoomCategoryId { get; set; }
     }
 }
