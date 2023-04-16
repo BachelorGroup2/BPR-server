@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sandr\\Desktop\\VIA\\Bachelor\\BPR-server\\WebApplication1\\BPR.API.csproj": {}
+    "C:\\STUDIA\\4.2\\BPR2\\BPR\\WebApplication1\\BPR.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sandr\\Desktop\\VIA\\Bachelor\\BPR-server\\BPR.Models\\BPR.Models.csproj": {
+    "C:\\STUDIA\\4.2\\BPR2\\BPR\\BPR.Models\\BPR.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sandr\\Desktop\\VIA\\Bachelor\\BPR-server\\BPR.Models\\BPR.Models.csproj",
+        "projectUniqueName": "C:\\STUDIA\\4.2\\BPR2\\BPR\\BPR.Models\\BPR.Models.csproj",
         "projectName": "BPR.Models",
-        "projectPath": "C:\\Users\\sandr\\Desktop\\VIA\\Bachelor\\BPR-server\\BPR.Models\\BPR.Models.csproj",
-        "packagesPath": "C:\\Users\\sandr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sandr\\Desktop\\VIA\\Bachelor\\BPR-server\\BPR.Models\\obj\\",
+        "projectPath": "C:\\STUDIA\\4.2\\BPR2\\BPR\\BPR.Models\\BPR.Models.csproj",
+        "packagesPath": "C:\\Users\\justy\\.nuget\\packages\\",
+        "outputPath": "C:\\STUDIA\\4.2\\BPR2\\BPR\\BPR.Models\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sandr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\justy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,17 +72,17 @@
         }
       }
     },
-    "C:\\Users\\sandr\\Desktop\\VIA\\Bachelor\\BPR-server\\WebApplication1\\BPR.API.csproj": {
+    "C:\\STUDIA\\4.2\\BPR2\\BPR\\WebApplication1\\BPR.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sandr\\Desktop\\VIA\\Bachelor\\BPR-server\\WebApplication1\\BPR.API.csproj",
+        "projectUniqueName": "C:\\STUDIA\\4.2\\BPR2\\BPR\\WebApplication1\\BPR.API.csproj",
         "projectName": "BPR.API",
-        "projectPath": "C:\\Users\\sandr\\Desktop\\VIA\\Bachelor\\BPR-server\\WebApplication1\\BPR.API.csproj",
-        "packagesPath": "C:\\Users\\sandr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sandr\\Desktop\\VIA\\Bachelor\\BPR-server\\WebApplication1\\obj\\",
+        "projectPath": "C:\\STUDIA\\4.2\\BPR2\\BPR\\WebApplication1\\BPR.API.csproj",
+        "packagesPath": "C:\\Users\\justy\\.nuget\\packages\\",
+        "outputPath": "C:\\STUDIA\\4.2\\BPR2\\BPR\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sandr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\justy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,8 +96,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\sandr\\Desktop\\VIA\\Bachelor\\BPR-server\\BPR.Models\\BPR.Models.csproj": {
-                "projectPath": "C:\\Users\\sandr\\Desktop\\VIA\\Bachelor\\BPR-server\\BPR.Models\\BPR.Models.csproj"
+              "C:\\STUDIA\\4.2\\BPR2\\BPR\\BPR.Models\\BPR.Models.csproj": {
+                "projectPath": "C:\\STUDIA\\4.2\\BPR2\\BPR\\BPR.Models\\BPR.Models.csproj"
               }
             }
           }
