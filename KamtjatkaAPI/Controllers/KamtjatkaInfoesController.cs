@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
+using KamtjatkaAPI.Repositories;
 
 namespace KamtjatkaAPI.Controllers
 {
@@ -13,25 +14,43 @@ namespace KamtjatkaAPI.Controllers
     [ApiController]
     public class KamtjatkaInfoesController : ControllerBase
     {
-        private readonly vujeeaxiContext _context;
+        //private readonly vujeeaxiContext _context;
+        private readonly IKamtjatkaInfoRepository _kamtjatkaInfoRepository;
 
-        public KamtjatkaInfoesController(vujeeaxiContext context)
+        /*public KamtjatkaInfoesController(vujeeaxiContext context)
         {
             _context = context;
+        }
+        */
+        public KamtjatkaInfoesController(IKamtjatkaInfoRepository kamtjatkaInfoRepository)
+        {
+            _kamtjatkaInfoRepository = kamtjatkaInfoRepository;
         }
 
         // GET: api/KamtjatkaInfoes
         [HttpGet]
         public async Task<ActionResult<IEnumerable<KamtjatkaInfo>>> GetKamtjatkaInfos()
         {
-            return await _context.KamtjatkaInfos.ToListAsync();
+            //return await _context.KamtjatkaInfos.ToListAsync();
+            var kamtjatkaInfo = await _kamtjatkaInfoRepository.Get();
+            return Ok(kamtjatkaInfo);
         }
 
         // GET: api/KamtjatkaInfoes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<KamtjatkaInfo>> GetKamtjatkaInfo(int id)
         {
+            /*
             var kamtjatkaInfo = await _context.KamtjatkaInfos.FindAsync(id);
+
+            if (kamtjatkaInfo == null)
+            {
+                return NotFound();
+            }
+
+            return kamtjatkaInfo;
+            */
+            var kamtjatkaInfo = await _kamtjatkaInfoRepository.Get(id);
 
             if (kamtjatkaInfo == null)
             {
@@ -46,6 +65,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutKamtjatkaInfo(int id, KamtjatkaInfo kamtjatkaInfo)
         {
+            /*
             if (id != kamtjatkaInfo.Id)
             {
                 return BadRequest();
@@ -70,6 +90,15 @@ namespace KamtjatkaAPI.Controllers
             }
 
             return NoContent();
+            */
+            if (id != kamtjatkaInfo.Id)
+            {
+                return BadRequest();
+            }
+
+            await _kamtjatkaInfoRepository.Update(kamtjatkaInfo);
+
+            return NoContent();
         }
 
         // POST: api/KamtjatkaInfoes
@@ -77,6 +106,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<KamtjatkaInfo>> PostKamtjatkaInfo(KamtjatkaInfo kamtjatkaInfo)
         {
+            /*
             _context.KamtjatkaInfos.Add(kamtjatkaInfo);
             try
             {
@@ -95,12 +125,16 @@ namespace KamtjatkaAPI.Controllers
             }
 
             return CreatedAtAction("GetKamtjatkaInfo", new { id = kamtjatkaInfo.Id }, kamtjatkaInfo);
+            */
+            var newKamtjatkaInfo = await _kamtjatkaInfoRepository.Create(kamtjatkaInfo);
+            return CreatedAtAction(nameof(GetKamtjatkaInfo), new { id = newKamtjatkaInfo.Id }, newKamtjatkaInfo);
         }
 
         // DELETE: api/KamtjatkaInfoes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteKamtjatkaInfo(int id)
         {
+            /*
             var kamtjatkaInfo = await _context.KamtjatkaInfos.FindAsync(id);
             if (kamtjatkaInfo == null)
             {
@@ -111,11 +145,21 @@ namespace KamtjatkaAPI.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+            */
+            var kamtjatkaInfoToDelete = await _kamtjatkaInfoRepository.Delete(id);
+
+            if (kamtjatkaInfoToDelete == null)
+            {
+                return NotFound();
+            }
+
+            return (IActionResult)kamtjatkaInfoToDelete;
         }
 
         private bool KamtjatkaInfoExists(int id)
         {
-            return _context.KamtjatkaInfos.Any(e => e.Id == id);
+            // return _context.KamtjatkaInfos.Any(e => e.Id == id);
+            return _kamtjatkaInfoRepository.Get(id) != null;
         }
     }
 }

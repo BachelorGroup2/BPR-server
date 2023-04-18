@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
+using KamtjatkaAPI.Repositories;
 
 namespace KamtjatkaAPI.Controllers
 {
@@ -13,25 +14,44 @@ namespace KamtjatkaAPI.Controllers
     [ApiController]
     public class AppointmentCategoriesController : ControllerBase
     {
-        private readonly vujeeaxiContext _context;
+        //private readonly vujeeaxiContext _context;
+        private readonly IAppointmentCategoryRepository _appointmentCategoryRepository;
 
-        public AppointmentCategoriesController(vujeeaxiContext context)
+        /* public AppointmentCategoriesController(vujeeaxiContext context)
+         {
+             _context = context;
+         }
+        */
+
+        public AppointmentCategoriesController(IAppointmentCategoryRepository appointmentCategoryRepository)
         {
-            _context = context;
+            _appointmentCategoryRepository = appointmentCategoryRepository;
         }
 
         // GET: api/AppointmentCategories
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppointmentCategory>>> GetAppointmentCategories()
         {
-            return await _context.AppointmentCategories.ToListAsync();
+            //return await _context.AppointmentCategories.ToListAsync();
+            var appointmentCategories = await _appointmentCategoryRepository.Get();
+            return Ok(appointmentCategories);
         }
 
         // GET: api/AppointmentCategories/5
         [HttpGet("{id}")]
         public async Task<ActionResult<AppointmentCategory>> GetAppointmentCategory(int id)
         {
+            /*
             var appointmentCategory = await _context.AppointmentCategories.FindAsync(id);
+
+            if (appointmentCategory == null)
+            {
+                return NotFound();
+            }
+
+            return appointmentCategory;
+            */
+            var appointmentCategory = await _appointmentCategoryRepository.Get(id);
 
             if (appointmentCategory == null)
             {
@@ -46,6 +66,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAppointmentCategory(int id, AppointmentCategory appointmentCategory)
         {
+            /*
             if (id != appointmentCategory.Id)
             {
                 return BadRequest();
@@ -70,6 +91,15 @@ namespace KamtjatkaAPI.Controllers
             }
 
             return NoContent();
+            */
+            if (id != appointmentCategory.Id)
+            {
+                return BadRequest();
+            }
+
+            await _appointmentCategoryRepository.Update(appointmentCategory);
+
+            return NoContent();
         }
 
         // POST: api/AppointmentCategories
@@ -77,6 +107,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<AppointmentCategory>> PostAppointmentCategory(AppointmentCategory appointmentCategory)
         {
+            /*
             _context.AppointmentCategories.Add(appointmentCategory);
             try
             {
@@ -95,12 +126,16 @@ namespace KamtjatkaAPI.Controllers
             }
 
             return CreatedAtAction("GetAppointmentCategory", new { id = appointmentCategory.Id }, appointmentCategory);
+            */
+            var newAppointmentCategory = await _appointmentCategoryRepository.Create(appointmentCategory);
+            return CreatedAtAction(nameof(GetAppointmentCategory), new { id = newAppointmentCategory.Id }, newAppointmentCategory);
         }
 
         // DELETE: api/AppointmentCategories/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAppointmentCategory(int id)
         {
+            /*
             var appointmentCategory = await _context.AppointmentCategories.FindAsync(id);
             if (appointmentCategory == null)
             {
@@ -111,11 +146,21 @@ namespace KamtjatkaAPI.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+            */
+            var appointmentCategoryToDelete = await _appointmentCategoryRepository.Delete(id);
+
+            if (appointmentCategoryToDelete == null)
+            {
+                return NotFound();
+            }
+
+            return (IActionResult)appointmentCategoryToDelete;
         }
 
         private bool AppointmentCategoryExists(int id)
         {
-            return _context.AppointmentCategories.Any(e => e.Id == id);
+            //return _context.AppointmentCategories.Any(e => e.Id == id);
+            return _appointmentCategoryRepository.Get(id) != null;
         }
     }
 }
