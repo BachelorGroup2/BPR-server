@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using KamtjatkaAPI.Repositories;
 
 namespace KamtjatkaAPI
 {
@@ -37,6 +38,19 @@ namespace KamtjatkaAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KamtjatkaAPI", Version = "v1" });
             });
+
+            services.AddScoped<IAdministratorRepository, AdministratorRepository>();
+            services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<IAppointmentCategoryRepository, AppointmentCategoryRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IFacilityRepository, FacilityRepository>();
+            services.AddScoped<IFinanceRepository, FinanceRepository>();
+            services.AddScoped<IFinanceCategoryRepository, FinanceCategoryRepository>();
+            services.AddScoped<IKamtjatkaInfoRepository, KamtjatkaInfoRepository>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IRoomBookingRepository, RoomBookingRepository>();
+            services.AddScoped<IRoomCategoryRepository, RoomCategoryRepository>();
+            services.AddScoped<IScheduleRepository, ScheduleRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
