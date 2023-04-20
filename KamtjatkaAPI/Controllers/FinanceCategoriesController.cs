@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
+using KamtjatkaAPI.Repositories;
 
 namespace KamtjatkaAPI.Controllers
 {
@@ -13,25 +14,43 @@ namespace KamtjatkaAPI.Controllers
     [ApiController]
     public class FinanceCategoriesController : ControllerBase
     {
-        private readonly vujeeaxiContext _context;
+        //private readonly vujeeaxiContext _context;
+        private readonly IFinanceCategoryRepository _financeCategoryRepository;
 
-        public FinanceCategoriesController(vujeeaxiContext context)
+        /* public FinanceCategoriesController(vujeeaxiContext context)
+         {
+             _context = context;
+         }
+        */
+        public FinanceCategoriesController(IFinanceCategoryRepository financeCategoryRepository)
         {
-            _context = context;
+            _financeCategoryRepository = financeCategoryRepository;
         }
 
         // GET: api/FinanceCategories
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FinanceCategory>>> GetFinanceCategories()
         {
-            return await _context.FinanceCategories.ToListAsync();
+            //return await _context.FinanceCategories.ToListAsync();
+            var financeCategory = await _financeCategoryRepository.Get();
+            return Ok(financeCategory);
         }
 
         // GET: api/FinanceCategories/5
         [HttpGet("{id}")]
         public async Task<ActionResult<FinanceCategory>> GetFinanceCategory(int id)
         {
+            /*
             var financeCategory = await _context.FinanceCategories.FindAsync(id);
+
+            if (financeCategory == null)
+            {
+                return NotFound();
+            }
+
+            return financeCategory;
+            */
+            var financeCategory = await _financeCategoryRepository.Get(id);
 
             if (financeCategory == null)
             {
@@ -46,6 +65,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFinanceCategory(int id, FinanceCategory financeCategory)
         {
+            /*
             if (id != financeCategory.Id)
             {
                 return BadRequest();
@@ -70,6 +90,15 @@ namespace KamtjatkaAPI.Controllers
             }
 
             return NoContent();
+            */
+            if (id != financeCategory.Id)
+            {
+                return BadRequest();
+            }
+
+            await _financeCategoryRepository.Update(financeCategory);
+
+            return NoContent();
         }
 
         // POST: api/FinanceCategories
@@ -77,6 +106,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<FinanceCategory>> PostFinanceCategory(FinanceCategory financeCategory)
         {
+            /*
             _context.FinanceCategories.Add(financeCategory);
             try
             {
@@ -95,12 +125,16 @@ namespace KamtjatkaAPI.Controllers
             }
 
             return CreatedAtAction("GetFinanceCategory", new { id = financeCategory.Id }, financeCategory);
+            */
+            var newFinanceCategory = await _financeCategoryRepository.Create(financeCategory);
+            return CreatedAtAction(nameof(GetFinanceCategory), new { id = newFinanceCategory.Id }, newFinanceCategory);
         }
 
         // DELETE: api/FinanceCategories/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFinanceCategory(int id)
         {
+            /*
             var financeCategory = await _context.FinanceCategories.FindAsync(id);
             if (financeCategory == null)
             {
@@ -111,11 +145,21 @@ namespace KamtjatkaAPI.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+            */
+            var financeCategoryToDelete = await _financeCategoryRepository.Delete(id);
+
+            if (financeCategoryToDelete == null)
+            {
+                return NotFound();
+            }
+
+            return (IActionResult)financeCategoryToDelete;
         }
 
         private bool FinanceCategoryExists(int id)
         {
-            return _context.FinanceCategories.Any(e => e.Id == id);
+            //return _context.FinanceCategories.Any(e => e.Id == id);
+            return _financeCategoryRepository.Get(id) != null;
         }
     }
 }

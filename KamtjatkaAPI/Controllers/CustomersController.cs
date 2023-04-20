@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
+using KamtjatkaAPI.Repositories;
 
 namespace KamtjatkaAPI.Controllers
 {
@@ -13,25 +14,43 @@ namespace KamtjatkaAPI.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        private readonly vujeeaxiContext _context;
+        //private readonly vujeeaxiContext _context;
+        private readonly ICustomerRepository _customerRepository;
 
-        public CustomersController(vujeeaxiContext context)
+        /*public CustomersController(vujeeaxiContext context)
         {
             _context = context;
+        }
+        */
+        public CustomersController(ICustomerRepository customerRepository)
+        {
+            _customerRepository = customerRepository;
         }
 
         // GET: api/Customers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
         {
-            return await _context.Customers.ToListAsync();
+            //return await _context.Customers.ToListAsync();
+            var customers = await _customerRepository.Get();
+            return Ok(customers);
         }
 
         // GET: api/Customers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Customer>> GetCustomer(int id)
         {
+            /*
             var customer = await _context.Customers.FindAsync(id);
+
+            if (customer == null)
+            {
+                return NotFound();
+            }
+
+            return customer;
+            */
+            var customer = await _customerRepository.Get(id);
 
             if (customer == null)
             {
@@ -46,6 +65,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, Customer customer)
         {
+            /*
             if (id != customer.Id)
             {
                 return BadRequest();
@@ -70,6 +90,15 @@ namespace KamtjatkaAPI.Controllers
             }
 
             return NoContent();
+            */
+            if (id != customer.Id)
+            {
+                return BadRequest();
+            }
+
+            await _customerRepository.Update(customer);
+
+            return NoContent();
         }
 
         // POST: api/Customers
@@ -77,6 +106,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
+            /*
             _context.Customers.Add(customer);
             try
             {
@@ -95,12 +125,16 @@ namespace KamtjatkaAPI.Controllers
             }
 
             return CreatedAtAction("GetCustomer", new { id = customer.Id }, customer);
+            */
+            var newCustomer = await _customerRepository.Create(customer);
+            return CreatedAtAction(nameof(GetCustomer), new { id = newCustomer.Id }, newCustomer);
         }
 
         // DELETE: api/Customers/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCustomer(int id)
         {
+            /*
             var customer = await _context.Customers.FindAsync(id);
             if (customer == null)
             {
@@ -111,11 +145,21 @@ namespace KamtjatkaAPI.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+            */
+            var customerToDelete = await _customerRepository.Delete(id);
+
+            if (customerToDelete == null)
+            {
+                return NotFound();
+            }
+
+            return (IActionResult)customerToDelete;
         }
 
         private bool CustomerExists(int id)
         {
-            return _context.Customers.Any(e => e.Id == id);
+            // return _context.Customers.Any(e => e.Id == id);
+            return _customerRepository.Get(id) != null;
         }
     }
 }
