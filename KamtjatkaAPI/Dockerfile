@@ -3,7 +3,7 @@ WORKDIR /app
 
 # Copy csproj and restore as distinct layers
 COPY *.csproj ./
-RUN dotnet restore ./KamtjatkaAPI/KamtjatkaAPI.csproj
+RUN dotnet restore ./KamtjatkaAPI
 
 # Copy everything else and build
 COPY . ./
