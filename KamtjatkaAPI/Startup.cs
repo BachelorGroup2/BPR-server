@@ -44,7 +44,8 @@ namespace KamtjatkaAPI
                 {
                     builder.WithOrigins("http://localhost:3000")
                         .AllowAnyHeader()
-                        .AllowAnyMethod();
+                        .AllowAnyMethod()
+                         .AllowCredentials();
                 });
             });
             services.AddScoped<IAdministratorRepository, AdministratorRepository>();
