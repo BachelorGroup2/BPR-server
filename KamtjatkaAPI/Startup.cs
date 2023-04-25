@@ -40,11 +40,12 @@ namespace KamtjatkaAPI
             });
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAllOrigins",
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin();
-                    });
+                options.AddPolicy("AllowOrigin", builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
             });
             services.AddScoped<IAdministratorRepository, AdministratorRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
@@ -80,7 +81,7 @@ namespace KamtjatkaAPI
             {
                 endpoints.MapControllers();
             });
-            app.UseCors("AllowAllOrigins");
+            app.UseCors("AllowOrigin");
         }
     }
 }
