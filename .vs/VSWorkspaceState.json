@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\KamtjatkaAPI",
+    "\\KamtjatkaAPI\\Controllers"
   ],
-  "SelectedNode": "\\BPR.sln (BPR.sln)",
+  "SelectedNode": "\\KamtjatkaAPI\\Startup.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -43,7 +43,7 @@ namespace KamtjatkaAPI
             {
                 options.AddPolicy("AllowOrigin", builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000")
+                    builder.WithOrigins("*")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials();
@@ -79,7 +79,7 @@ namespace KamtjatkaAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
