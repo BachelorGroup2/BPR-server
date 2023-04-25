@@ -38,6 +38,7 @@ namespace KamtjatkaAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KamtjatkaAPI", Version = "v1" });
             });
+         
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin", builder =>
@@ -45,9 +46,11 @@ namespace KamtjatkaAPI
                     builder.WithOrigins("http://localhost:3000")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
-                         .AllowCredentials();
+                        .AllowCredentials();
                 });
             });
+
+           
             services.AddScoped<IAdministratorRepository, AdministratorRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IAppointmentCategoryRepository, AppointmentCategoryRepository>();

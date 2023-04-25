@@ -12,7 +12,7 @@ namespace KamtjatkaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
+    [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]
     public class CustomersController : ControllerBase
     {
         //private readonly vujeeaxiContext _context;
