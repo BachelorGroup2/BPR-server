@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\STUDIA\\4.2\\BPR2\\BPR\\KamtjatkaAPI\\KamtjatkaAPI.csproj": {}
+    "C:\\Users\\User\\Source\\Repos\\BPR-server\\KamtjatkaAPI\\KamtjatkaAPI.csproj": {}
   },
   "projects": {
-    "C:\\STUDIA\\4.2\\BPR2\\BPR\\KamtjatkaAPI\\KamtjatkaAPI.csproj": {
+    "C:\\Users\\User\\Source\\Repos\\BPR-server\\KamtjatkaAPI\\KamtjatkaAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\STUDIA\\4.2\\BPR2\\BPR\\KamtjatkaAPI\\KamtjatkaAPI.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\BPR-server\\KamtjatkaAPI\\KamtjatkaAPI.csproj",
         "projectName": "KamtjatkaAPI",
-        "projectPath": "C:\\STUDIA\\4.2\\BPR2\\BPR\\KamtjatkaAPI\\KamtjatkaAPI.csproj",
-        "packagesPath": "C:\\Users\\justy\\.nuget\\packages\\",
-        "outputPath": "C:\\STUDIA\\4.2\\BPR2\\BPR\\KamtjatkaAPI\\obj\\",
+        "projectPath": "C:\\Users\\User\\Source\\Repos\\BPR-server\\KamtjatkaAPI\\KamtjatkaAPI.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Source\\Repos\\BPR-server\\KamtjatkaAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\justy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -77,10 +81,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.17, 5.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -89,7 +112,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

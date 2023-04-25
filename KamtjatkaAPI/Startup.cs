@@ -38,7 +38,14 @@ namespace KamtjatkaAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KamtjatkaAPI", Version = "v1" });
             });
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin();
+                    });
+            });
             services.AddScoped<IAdministratorRepository, AdministratorRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IAppointmentCategoryRepository, AppointmentCategoryRepository>();
@@ -73,6 +80,7 @@ namespace KamtjatkaAPI
             {
                 endpoints.MapControllers();
             });
+            app.UseCors("AllowAllOrigins");
         }
     }
 }
