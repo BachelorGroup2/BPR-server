@@ -39,15 +39,12 @@ namespace KamtjatkaAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KamtjatkaAPI", Version = "v1" });
             });
 services.AddCors(options =>
-            {
-                options.AddPolicy("AllowSpecificOrigins",
-                    builder =>
-                {
-                    builder.WithOrigins("http://localhost:3000") 
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                });
-            });
+{
+    options.AddPolicy("MyPolicy", builder =>
+    {
+        builder.WithOrigins("http://localhost:3000");
+    });
+});
             services.AddScoped<IAdministratorRepository, AdministratorRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IAppointmentCategoryRepository, AppointmentCategoryRepository>();
