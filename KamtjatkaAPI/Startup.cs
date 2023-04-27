@@ -29,6 +29,8 @@ namespace KamtjatkaAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 
             services.AddControllers();
             //retrieves connection string from appsettings
@@ -41,9 +43,10 @@ namespace KamtjatkaAPI
          
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowOrigin", builder =>
+                options.AddPolicy(name: MyAllowSpecificOrigins, 
+                    policy =>
                 {
-                    builder.WithOrigins("*")
+                    policy.WithOrigins("http://kamtjatkaapi.cegegch4h0a4aea6.northeurope.azurecontainer.io")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials();
@@ -68,7 +71,9 @@ namespace KamtjatkaAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors("AllowOrigin");
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+            app.UseCors(MyAllowSpecificOrigins);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
