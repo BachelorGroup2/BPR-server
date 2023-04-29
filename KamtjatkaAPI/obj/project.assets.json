@@ -7591,19 +7591,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\justy\\.nuget\\packages\\": {}
+    "C:\\Users\\sandr\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\STUDIA\\4.2\\BPR2\\BPR\\KamtjatkaAPI\\KamtjatkaAPI.csproj",
+      "projectUniqueName": "C:\\Users\\sandr\\Desktop\\BPR\\BPR-server\\KamtjatkaAPI\\KamtjatkaAPI.csproj",
       "projectName": "KamtjatkaAPI",
-      "projectPath": "C:\\STUDIA\\4.2\\BPR2\\BPR\\KamtjatkaAPI\\KamtjatkaAPI.csproj",
-      "packagesPath": "C:\\Users\\justy\\.nuget\\packages\\",
-      "outputPath": "C:\\STUDIA\\4.2\\BPR2\\BPR\\KamtjatkaAPI\\obj\\",
+      "projectPath": "C:\\Users\\sandr\\Desktop\\BPR\\BPR-server\\KamtjatkaAPI\\KamtjatkaAPI.csproj",
+      "packagesPath": "C:\\Users\\sandr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sandr\\Desktop\\BPR\\BPR-server\\KamtjatkaAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\justy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sandr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
