@@ -29,14 +29,3 @@ jobs:
           file: ./KamtjatkaAPI/Dockerfile
           push: true
           tags: sandragrzelak/kamtjatkaapi:latest
-          
-      - 
-        name: 'Az CLI login without subscription'
-        uses: azure/login@v1
-        with:
-          client-id: 310093@VIAUC.DK
-          tenant-id: 97e1982b-375c-460e-9071-9067de86388b
-          allow-no-subscriptions: true
-          
-      - run: |
-          az container restart --name kamtjatkaapi --resource-group server_bpr
