@@ -29,6 +29,13 @@ jobs:
           file: ./KamtjatkaAPI/Dockerfile
           push: true
           tags: sandragrzelak/kamtjatkaapi:latest
-
- 
-
+      -
+        name: 'Azure PowerShell login without subscription Restart Azure container instance'
+        uses: azure/CLI@v1
+        with:
+          client-id: '71ef1d03-8f19-4948-be1c-20dfe8efad93'
+          tenant-id: '97e1982b-375c-460e-9071-9067de86388b'
+          enable-AzPSSession: true
+          allow-no-subscriptions: true
+          inlineScript: |
+            az container restart --name kamtjatkaapi --resource-group server_bpr
