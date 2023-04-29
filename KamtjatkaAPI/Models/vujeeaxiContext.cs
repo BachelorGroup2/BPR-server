@@ -485,9 +485,20 @@ namespace KamtjatkaAPI.Models
                     .HasMaxLength(64)
                     .HasColumnName("rent_price");
 
-                entity.Property(e => e.Utilities)
-                    .HasMaxLength(64)
-                    .HasColumnName("utilities");
+                entity.Property(e => e.LongDescription)
+                .IsRequired()
+                .HasMaxLength(20000)
+                .HasColumnName("long_description");
+
+                entity.Property(e => e.Consuption)
+                .IsRequired()
+                .HasMaxLength(64)
+                .HasColumnName("consumption");
+
+                entity.Property(e => e.MoveInPrice)
+                .IsRequired()
+                .HasMaxLength(64)
+                .HasColumnName("moveinprice");
             });
 
             modelBuilder.Entity<Schedule>(entity =>

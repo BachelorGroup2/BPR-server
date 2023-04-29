@@ -16,10 +16,12 @@ namespace KamtjatkaAPI.Models
         public string CategoryName { get; set; }
         public string Description { get; set; }
         public int NumberOfRooms { get; set; }
-        public string Utilities { get; set; }
         public string RentPrice { get; set; }
         public string Deposit { get; set; }
         public string PictureLink { get; set; }
+        public string LongDescription { get; set; }
+        public string Consuption { get; set; }
+        public string MoveInPrice { get; set; }
 
         public virtual ICollection<Room> Rooms { get; set; }
     }
