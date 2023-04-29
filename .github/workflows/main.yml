@@ -28,7 +28,7 @@ jobs:
           context: .
           file: ./KamtjatkaAPI/Dockerfile
           push: true
-          tags: sandragrzelak/clockbox:latest
+          tags: sandragrzelak/kamtjatkaapi:latest
 
  
 
