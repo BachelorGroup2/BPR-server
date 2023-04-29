@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
 using KamtjatkaAPI.Repositories;
+using Microsoft.AspNetCore.Cors;
 
 namespace KamtjatkaAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowOrigin")]
     public class AppointmentCategoriesController : ControllerBase
     {
         //private readonly vujeeaxiContext _context;

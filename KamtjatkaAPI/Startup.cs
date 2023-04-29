@@ -40,20 +40,19 @@ namespace KamtjatkaAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KamtjatkaAPI", Version = "v1" });
             });
-         
+
             services.AddCors(options =>
             {
-                options.AddPolicy(name: MyAllowSpecificOrigins, 
-                    policy =>
+                options.AddPolicy("AllowOrigin", builder =>
                 {
-                    policy.WithOrigins("http://kamtjatkaapi.cegegch4h0a4aea6.northeurope.azurecontainer.io")
+                    builder.WithOrigins("http://localhost:3000")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials();
                 });
             });
 
-           
+
             services.AddScoped<IAdministratorRepository, AdministratorRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IAppointmentCategoryRepository, AppointmentCategoryRepository>();
@@ -71,9 +70,7 @@ namespace KamtjatkaAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
-            app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors("AllowOrigin");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
