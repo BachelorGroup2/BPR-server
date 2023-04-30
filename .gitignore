@@ -73,3 +73,17 @@ _[Ss]cripts
 *.nupkg
 *.ncrunchsolution
 *.dot[Cc]over
+
+KamtjatkaAPI/bin/
+KamtjatkaAPI/obj/
+KamtjatkaAPI/bin/Debug/net5.0/KamtjatkaAPI.dll
+KamtjatkaAPI/bin/Debug/net5.0/KamtjatkaAPI.pdb
+KamtjatkaAPI/bin/Debug/net5.0/KamtjatkaAPI.runtimeconfig.dev.json
+KamtjatkaAPI/obj/KamtjatkaAPI.csproj.nuget.dgspec.json
+KamtjatkaAPI/obj/KamtjatkaAPI.csproj.nuget.g.props
+KamtjatkaAPI/obj/KamtjatkaAPI.csproj.nuget.g.targets
+KamtjatkaAPI/obj/project.assets.json
+.vs/BPR/v16/.suo
+KamtjatkaAPI/obj/Debug/net5.0/ref/KamtjatkaAPI.dll
+KamtjatkaAPI/obj/project.nuget.cache
+KamtjatkaAPI/obj/Debug/net5.0/KamtjatkaAPI.MvcApplicationPartsAssemblyInfo.cs

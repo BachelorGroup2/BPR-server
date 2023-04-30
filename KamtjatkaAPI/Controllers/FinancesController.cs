@@ -33,8 +33,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Finance>>> GetFinances()
         {
-            //return await _context.Finances.ToListAsync();
-            var finances = await _financeRepository.Get();
+       
+            var finances = await _financeRepository.GetFinances();
             return Ok(finances);
         }
 
