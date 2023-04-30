@@ -29,7 +29,7 @@ namespace KamtjatkaAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+           
 
 
             services.AddControllers();
@@ -70,7 +70,6 @@ namespace KamtjatkaAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors("AllowOrigin");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -81,14 +80,15 @@ namespace KamtjatkaAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            
+
+            app.UseCors("AllowOrigin"); 
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-           
         }
     }
 }
