@@ -34,7 +34,7 @@ namespace KamtjatkaAPI.Controllers
         public async Task<ActionResult<IEnumerable<RoomBooking>>> GetRoomBookings()
         {
             //return await _context.RoomBookings.ToListAsync();
-            var roomBookings = await _roomBookingRepository.Get();
+            var roomBookings = await _roomBookingRepository.GetBookedRooms();
             return Ok(roomBookings);
         }
 

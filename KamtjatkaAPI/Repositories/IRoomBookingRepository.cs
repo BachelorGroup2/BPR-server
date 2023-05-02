@@ -8,5 +8,6 @@ namespace KamtjatkaAPI.Repositories
 {
    public interface IRoomBookingRepository : IRepositoryBase<RoomBooking>
     {
+        Task<IEnumerable<RoomBooking>> GetBookedRooms();
     }
 }

@@ -830,3 +830,8 @@ D:\bachelorserver\BPR-server\KamtjatkaAPI\obj\Debug\net5.0\refint\KamtjatkaAPI.d
 D:\bachelorserver\BPR-server\KamtjatkaAPI\obj\Debug\net5.0\KamtjatkaAPI.pdb
 D:\bachelorserver\BPR-server\KamtjatkaAPI\obj\Debug\net5.0\KamtjatkaAPI.genruntimeconfig.cache
 D:\bachelorserver\BPR-server\KamtjatkaAPI\obj\Debug\net5.0\ref\KamtjatkaAPI.dll
+C:\Users\sandr\Desktop\BPR\BPR-server\KamtjatkaAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\sandr\Desktop\BPR\BPR-server\KamtjatkaAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\sandr\Desktop\BPR\BPR-server\KamtjatkaAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\sandr\Desktop\BPR\BPR-server\KamtjatkaAPI\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\sandr\Desktop\BPR\BPR-server\KamtjatkaAPI\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll
