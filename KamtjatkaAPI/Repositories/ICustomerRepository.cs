@@ -8,5 +8,6 @@ namespace KamtjatkaAPI.Repositories
 {
     public interface ICustomerRepository : IRepositoryBase<Customer>
     {
+        Task<IEnumerable<Customer>> GetCustomerWithRoomCategory();
     }
 }
