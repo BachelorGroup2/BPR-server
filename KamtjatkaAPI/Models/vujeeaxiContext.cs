@@ -33,11 +33,11 @@ namespace KamtjatkaAPI.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-/*            if (!optionsBuilder.IsConfigured)
+            if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Server=dumbo.db.elephantsql.com;Database=vujeeaxi;User Id=vujeeaxi;Password=cAZW3QOqk0SeqDKYfIC-sRIW0htmsx7f;Port=5432");
-            }*/
+                optionsBuilder.UseNpgsql("Server=dumbo.db.elephantsql.com;Database=vujeeaxi;Port=5432;User Id=vujeeaxi;Password=cAZW3QOqk0SeqDKYfIC-sRIW0htmsx7f;");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -259,6 +259,10 @@ namespace KamtjatkaAPI.Models
 
                 entity.Property(e => e.CustomerId).HasColumnName("customer_id");
 
+                entity.Property(e => e.Date)
+                    .HasColumnType("date")
+                    .HasColumnName("date");
+
                 entity.Property(e => e.Description)
                     .HasMaxLength(64)
                     .HasColumnName("description");
@@ -465,6 +469,10 @@ namespace KamtjatkaAPI.Models
                     .HasMaxLength(64)
                     .HasColumnName("category_name");
 
+                entity.Property(e => e.Consumption)
+                    .HasMaxLength(64)
+                    .HasColumnName("consumption");
+
                 entity.Property(e => e.Deposit)
                     .HasMaxLength(64)
                     .HasColumnName("deposit");
@@ -472,6 +480,14 @@ namespace KamtjatkaAPI.Models
                 entity.Property(e => e.Description)
                     .HasMaxLength(500)
                     .HasColumnName("description");
+
+                entity.Property(e => e.LongDescription)
+                    .HasMaxLength(20000)
+                    .HasColumnName("long_description");
+
+                entity.Property(e => e.Moveinprice)
+                    .HasMaxLength(64)
+                    .HasColumnName("moveinprice");
 
                 entity.Property(e => e.NumberOfRooms).HasColumnName("number_of_rooms");
 
@@ -484,21 +500,6 @@ namespace KamtjatkaAPI.Models
                     .IsRequired()
                     .HasMaxLength(64)
                     .HasColumnName("rent_price");
-
-                entity.Property(e => e.LongDescription)
-                .IsRequired()
-                .HasMaxLength(20000)
-                .HasColumnName("long_description");
-
-                entity.Property(e => e.Consuption)
-                .IsRequired()
-                .HasMaxLength(64)
-                .HasColumnName("consumption");
-
-                entity.Property(e => e.MoveInPrice)
-                .IsRequired()
-                .HasMaxLength(64)
-                .HasColumnName("moveinprice");
             });
 
             modelBuilder.Entity<Schedule>(entity =>

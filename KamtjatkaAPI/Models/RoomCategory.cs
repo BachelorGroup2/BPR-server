@@ -20,8 +20,8 @@ namespace KamtjatkaAPI.Models
         public string Deposit { get; set; }
         public string PictureLink { get; set; }
         public string LongDescription { get; set; }
-        public string Consuption { get; set; }
-        public string MoveInPrice { get; set; }
+        public string Consumption { get; set; }
+        public string Moveinprice { get; set; }
 
         public virtual ICollection<Room> Rooms { get; set; }
     }
