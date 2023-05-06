@@ -155,7 +155,7 @@ namespace KamtjatkaAPI.Controllers
                 return NotFound();
             }
 
-            return (IActionResult)customerToDelete;
+            return Ok("Customer Deleted");
         }
 
         private bool CustomerExists(int id)

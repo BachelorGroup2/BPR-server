@@ -155,7 +155,7 @@ namespace KamtjatkaAPI.Controllers
                 return NotFound();
             }
 
-            return (IActionResult)roomBookingToDelete;
+            return Ok("Resource Deleted Succesfully");
         }
 
         private bool RoomBookingExists(int id)

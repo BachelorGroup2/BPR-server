@@ -156,7 +156,7 @@ namespace KamtjatkaAPI.Controllers
                 return NotFound();
             }
 
-            return (IActionResult)scheduleToDelete;
+            return Ok("Resource Deleted Succesfully");
         }
 
         private bool ScheduleExists(int id)

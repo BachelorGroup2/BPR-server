@@ -155,7 +155,7 @@ namespace KamtjatkaAPI.Controllers
                 return NotFound();
             }
 
-            return (IActionResult)financeCategoryToDelete;
+            return Ok("Resource Deleted Succesfully");
         }
 
         private bool FinanceCategoryExists(int id)

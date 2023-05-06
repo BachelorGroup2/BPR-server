@@ -156,7 +156,7 @@ namespace KamtjatkaAPI.Controllers
                 return NotFound();
             }
 
-            return (IActionResult)appointmentCategoryToDelete;
+            return Ok("Resource Deleted Succesfully");
         }
 
         private bool AppointmentCategoryExists(int id)

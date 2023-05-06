@@ -156,7 +156,7 @@ namespace KamtjatkaAPI.Controllers
                 return NotFound();
             }
 
-            return (IActionResult)administratorToDelete;
+            return Ok("Resource Deleted Succesfully");
         }
 
         private bool AdministratorExists(int id)

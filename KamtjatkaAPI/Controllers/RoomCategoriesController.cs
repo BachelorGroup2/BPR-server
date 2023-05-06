@@ -156,7 +156,7 @@ namespace KamtjatkaAPI.Controllers
                 return NotFound();
             }
 
-            return (IActionResult)roomCategoryToDelete;
+            return Ok("Resource Deleted Succesfully");
         }
 
         private bool RoomCategoryExists(int id)
