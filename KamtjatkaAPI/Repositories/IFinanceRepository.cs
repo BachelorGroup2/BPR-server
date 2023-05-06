@@ -9,5 +9,6 @@ namespace KamtjatkaAPI.Repositories
    public interface IFinanceRepository : IRepositoryBase<Finance>
     {
         Task<IEnumerable<Finance>> GetFinances();
+        Task<IEnumerable<object>> GetInvoiceData();
     }
 }

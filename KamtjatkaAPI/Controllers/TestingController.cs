@@ -16,14 +16,15 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class TestingController : ControllerBase
     {
-        
-        // GET: api/Testing
-        [HttpGet]
-        public async Task<ActionResult<String>> GetSchedules()
+
+        private readonly vujeeaxiContext _context;
+
+        public TestingController(vujeeaxiContext context)
         {
-            
-            return Ok("HelloNew");
+            _context = context;
         }
+        
+
 
         // GET: api/Testing/5
         [HttpGet("{id}")]

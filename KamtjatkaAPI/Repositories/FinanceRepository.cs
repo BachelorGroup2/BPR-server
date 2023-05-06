@@ -32,5 +32,21 @@ namespace KamtjatkaAPI.Repositories
             })
             .ToListAsync();
         }
+
+        public async Task<IEnumerable<object>> GetInvoiceData()
+        {
+
+            return await appDbContext.RoomBookings
+        .Include(f => f.Room)
+        .Include(f => f.Room.RoomCategory)
+        .Include(f => f.Customer)
+        .Select(f => new
+        {
+            rentprice = f.Room.RoomCategory.RentPrice,
+            CustomerId = f.Customer.Id
+        })
+        .ToListAsync();
+
+        }
     }
 }

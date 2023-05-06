@@ -18,6 +18,8 @@ namespace KamtjatkaAPI.Repositories
 
         public async Task<IEnumerable<RoomBooking>> GetBookedRooms()
         {
+
+
             return await appDbContext.RoomBookings
             .Include(f => f.Room).Include(f => f.Room.RoomCategory)
             .Include(f => f.Customer) // Include the related FinanceCategory entity
@@ -32,5 +34,23 @@ namespace KamtjatkaAPI.Repositories
             })
             .ToListAsync();
         }
+
+        public async Task<IEnumerable<object>> GetInvoiceData()
+        {
+
+
+            return await appDbContext.RoomBookings
+        .Include(f => f.Room)
+        .Include(f => f.Room.RoomCategory)
+        .Include(f => f.Customer)
+        .Select(f => new
+        {
+            rentprice = f.Room.RoomCategory.RentPrice,
+            customer_id = f.Customer.Id
+        })
+        .ToListAsync();
+           
+        }
+
     }
 }

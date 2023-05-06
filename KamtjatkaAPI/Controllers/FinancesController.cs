@@ -38,6 +38,18 @@ namespace KamtjatkaAPI.Controllers
             return Ok(finances);
         }
 
+
+
+        // GET: api/Finances/getData
+        [Route("getData")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<object>>> GetFinanceData()
+        {
+
+            var finances = await _financeRepository.GetInvoiceData();
+            return Ok(finances);
+        }
+
         // GET: api/Finances/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Finance>> GetFinance(int id)

@@ -249,40 +249,45 @@ namespace KamtjatkaAPI.Models
             {
                 entity.ToTable("finance", "bpr");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("id");
+                entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.AmountOfMoney)
-                    .HasMaxLength(64)
+                    .IsRequired()
+                    .HasMaxLength(50)
                     .HasColumnName("amount_of_money");
+
+                entity.Property(e => e.CreationDate)
+                    .HasColumnName("creation_date")
+                    .HasDefaultValueSql("now()");
 
                 entity.Property(e => e.CustomerId).HasColumnName("customer_id");
 
-                entity.Property(e => e.Date).HasColumnName("date");
+                entity.Property(e => e.Description).HasColumnName("description");
 
-                entity.Property(e => e.Description)
-                    .HasMaxLength(64)
-                    .HasColumnName("description");
+                entity.Property(e => e.DueDate).HasColumnName("due_date");
 
                 entity.Property(e => e.FinanceCategoryId).HasColumnName("finance_category_id");
 
+                entity.Property(e => e.IsPaid)
+                    .HasColumnName("is_paid")
+                    .HasDefaultValueSql("false");
+
                 entity.Property(e => e.Name)
                     .IsRequired()
-                    .HasMaxLength(64)
+                    .HasMaxLength(255)
                     .HasColumnName("name");
 
                 entity.HasOne(d => d.Customer)
                     .WithMany(p => p.Finances)
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("finance_customer");
+                    .HasConstraintName("finance_customer_id_fkey");
 
                 entity.HasOne(d => d.FinanceCategory)
                     .WithMany(p => p.Finances)
                     .HasForeignKey(d => d.FinanceCategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("finance_finance_category");
+                    .HasConstraintName("finance_finance_category_id_fkey");
             });
 
             modelBuilder.Entity<FinanceCategory>(entity =>
