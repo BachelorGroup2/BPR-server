@@ -118,30 +118,19 @@ namespace KamtjatkaAPI.Controllers
         // POST: api/Finances
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Finance>> PostFinance(Finance finance)
+        public async Task<ActionResult<List<Finance>>> PostFinance(IEnumerable<Finance> finances)
         {
-            /*
-            _context.Finances.Add(finance);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (FinanceExists(finance.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            Console.WriteLine("SADASDSADSAD");
 
-            return CreatedAtAction("GetFinance", new { id = finance.Id }, finance);
-            */
-            var newFinance = await _financeRepository.Create(finance);
-            return CreatedAtAction(nameof(GetFinance), new { id = newFinance.Id }, newFinance);
+           // List<Finance> newFinances = new List<Finance>();
+            foreach (var finance in finances)
+            {
+                Console.WriteLine("EACH ONE");
+                var newFinance = await _financeRepository.Create(finance);
+              //  newFinances.Add(newFinance);
+            }
+            
+            return Ok("Ok");
         }
 
         // DELETE: api/Finances/5
