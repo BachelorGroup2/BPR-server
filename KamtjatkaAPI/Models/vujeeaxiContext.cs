@@ -31,6 +31,8 @@ namespace KamtjatkaAPI.Models
         public virtual DbSet<RoomCategory> RoomCategories { get; set; }
         public virtual DbSet<Schedule> Schedules { get; set; }
 
+        public virtual DbSet<Roles> Roles { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -65,7 +67,7 @@ namespace KamtjatkaAPI.Models
                 .HasPostgresExtension("uuid-ossp")
                 .HasPostgresExtension("xml2")
                 .HasAnnotation("Relational:Collation", "en_US.UTF-8");
-
+          
             modelBuilder.Entity<Administrator>(entity =>
             {
                 entity.ToTable("administrator", "bpr");
@@ -93,6 +95,14 @@ namespace KamtjatkaAPI.Models
                     .IsRequired()
                     .HasMaxLength(64)
                     .HasColumnName("surname");
+
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(64)
+                    .HasColumnName("password");
+
+                entity.Property(e => e.RoleId)
+               .HasColumnName("roleid");
             });
 
             modelBuilder.Entity<Appointment>(entity =>
@@ -118,6 +128,7 @@ namespace KamtjatkaAPI.Models
                 entity.Property(e => e.EndTimeExpected).HasColumnName("end_time_expected");
 
                 entity.Property(e => e.StartTime).HasColumnName("start_time");
+
 
                 entity.HasOne(d => d.Administrator)
                     .WithMany(p => p.Appointments)
@@ -524,6 +535,21 @@ namespace KamtjatkaAPI.Models
                     .HasForeignKey(d => d.AdministratorId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("schedule_administrator");
+            });
+
+            modelBuilder.Entity<Roles>(entity =>
+            {
+                entity.ToTable("roles", "bpr");
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedNever()
+                    .HasColumnName("id");
+
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(64)
+                    .HasColumnName("name");
             });
 
             OnModelCreatingPartial(modelBuilder);

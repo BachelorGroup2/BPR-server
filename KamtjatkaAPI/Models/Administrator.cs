@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.ComponentModel.DataAnnotations.Schema;
+using KamtjatkaAPI.Models;
+using KamtjatkaAPI.Repositories;
 #nullable disable
 
 namespace KamtjatkaAPI.Models
@@ -19,6 +21,10 @@ namespace KamtjatkaAPI.Models
         public string Surname { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+
+        public string Password { get; set; }
+        [Column("roleid")]
+        public int RoleId { get; set; }
 
         public virtual ICollection<Appointment> Appointments { get; set; }
         public virtual ICollection<KamtjatkaInfo> KamtjatkaInfos { get; set; }

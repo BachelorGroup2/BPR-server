@@ -65,6 +65,7 @@ namespace KamtjatkaAPI
             services.AddScoped<IRoomBookingRepository, RoomBookingRepository>();
             services.AddScoped<IRoomCategoryRepository, RoomCategoryRepository>();
             services.AddScoped<IScheduleRepository, ScheduleRepository>();
+            services.AddScoped<IRolesRepository, RolesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
