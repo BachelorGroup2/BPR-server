@@ -33,6 +33,7 @@ namespace KamtjatkaAPI.Controllers
 
         // GET: api/Administrators
         [HttpGet]
+        [EnableCors("AllowOrigin")]
         public async Task<ActionResult<IEnumerable<Administrator>>> GetAdministrators()
         {
             // return await _context.Administrators.ToListAsync();
@@ -135,6 +136,7 @@ namespace KamtjatkaAPI.Controllers
 
         // DELETE: api/Administrators/5
         [HttpDelete("{id}")]
+        [EnableCors("AllowOrigin")]
         public async Task<IActionResult> DeleteAdministrator(int id)
         {
             /*
