@@ -27,6 +27,8 @@ namespace KamtjatkaAPI.Repositories
                 Name = f.Name,
                 AmountOfMoney = f.AmountOfMoney,
                 Description = f.Description,
+                DueDate=f.DueDate,
+                CreationDate=f.CreationDate,
                 FinanceCategory = f.FinanceCategory,
                 Customer = f.Customer // New property to hold the Name of FinanceCategory
             })
