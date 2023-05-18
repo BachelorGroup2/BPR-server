@@ -30,6 +30,7 @@ namespace KamtjatkaAPI.Repositories
                 DueDate=f.DueDate,
                 CreationDate=f.CreationDate,
                 FinanceCategory = f.FinanceCategory,
+                IsPaid=f.IsPaid,
                 Customer = f.Customer // New property to hold the Name of FinanceCategory
             })
             .ToListAsync();
