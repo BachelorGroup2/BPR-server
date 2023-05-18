@@ -45,7 +45,7 @@ namespace KamtjatkaAPI
             {
                 options.AddPolicy("AllowOrigin", builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000")
+                    builder.WithOrigins("http://localhost:3000", "http://localhost:3000/BachelorWebApp", "http://localhost:3000/BachelorWebApp/admin")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials();
