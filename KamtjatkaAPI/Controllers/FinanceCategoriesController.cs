@@ -16,14 +16,10 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class FinanceCategoriesController : ControllerBase
     {
-        //private readonly vujeeaxiContext _context;
+       
         private readonly IFinanceCategoryRepository _financeCategoryRepository;
 
-        /* public FinanceCategoriesController(vujeeaxiContext context)
-         {
-             _context = context;
-         }
-        */
+      
         public FinanceCategoriesController(IFinanceCategoryRepository financeCategoryRepository)
         {
             _financeCategoryRepository = financeCategoryRepository;
@@ -33,7 +29,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FinanceCategory>>> GetFinanceCategories()
         {
-            //return await _context.FinanceCategories.ToListAsync();
+            
             var financeCategory = await _financeCategoryRepository.Get();
             return Ok(financeCategory);
         }
@@ -42,16 +38,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<FinanceCategory>> GetFinanceCategory(int id)
         {
-            /*
-            var financeCategory = await _context.FinanceCategories.FindAsync(id);
-
-            if (financeCategory == null)
-            {
-                return NotFound();
-            }
-
-            return financeCategory;
-            */
+            
             var financeCategory = await _financeCategoryRepository.Get(id);
 
             if (financeCategory == null)
@@ -67,32 +54,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFinanceCategory(int id, FinanceCategory financeCategory)
         {
-            /*
-            if (id != financeCategory.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(financeCategory).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FinanceCategoryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-            */
+           
             if (id != financeCategory.Id)
             {
                 return BadRequest();
@@ -100,7 +62,8 @@ namespace KamtjatkaAPI.Controllers
 
             await _financeCategoryRepository.Update(financeCategory);
 
-            return NoContent();
+           
+            return Ok("PUT successfull");
         }
 
         // POST: api/FinanceCategories
@@ -108,26 +71,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<FinanceCategory>> PostFinanceCategory(FinanceCategory financeCategory)
         {
-            /*
-            _context.FinanceCategories.Add(financeCategory);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (FinanceCategoryExists(financeCategory.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetFinanceCategory", new { id = financeCategory.Id }, financeCategory);
-            */
+           
             var newFinanceCategory = await _financeCategoryRepository.Create(financeCategory);
             return CreatedAtAction(nameof(GetFinanceCategory), new { id = newFinanceCategory.Id }, newFinanceCategory);
         }
@@ -136,18 +80,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFinanceCategory(int id)
         {
-            /*
-            var financeCategory = await _context.FinanceCategories.FindAsync(id);
-            if (financeCategory == null)
-            {
-                return NotFound();
-            }
-
-            _context.FinanceCategories.Remove(financeCategory);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-            */
+            
             var financeCategoryToDelete = await _financeCategoryRepository.Delete(id);
 
             if (financeCategoryToDelete == null)

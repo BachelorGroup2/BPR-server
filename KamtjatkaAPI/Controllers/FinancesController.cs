@@ -16,14 +16,10 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class FinancesController : ControllerBase
     {
-        //private readonly vujeeaxiContext _context;
+        
         private readonly IFinanceRepository _financeRepository;
 
-        /* public FinancesController(vujeeaxiContext context)
-         {
-             _context = context;
-         }
-        */
+      
         public FinancesController(IFinanceRepository financeRepository)
         {
             _financeRepository = financeRepository;
@@ -54,16 +50,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Finance>> GetFinance(int id)
         {
-            /*
-            var finance = await _context.Finances.FindAsync(id);
-
-            if (finance == null)
-            {
-                return NotFound();
-            }
-
-            return finance;
-            */
+            
             var finances = await _financeRepository.Get(id);
 
             if (finances == null)
@@ -79,32 +66,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFinance(int id, Finance finance)
         {
-            /*
-            if (id != finance.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(finance).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FinanceExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-            */
+          
+          
             if (id != finance.Id)
             {
                 return BadRequest();
@@ -112,7 +75,8 @@ namespace KamtjatkaAPI.Controllers
 
             await _financeRepository.Update(finance);
 
-            return NoContent();
+            
+            return Ok("PUT successfull");
         }
 
         // POST: api/Finances
@@ -122,12 +86,12 @@ namespace KamtjatkaAPI.Controllers
         {
             Console.WriteLine("SADASDSADSAD");
 
-           // List<Finance> newFinances = new List<Finance>();
+           
             foreach (var finance in finances)
             {
                 Console.WriteLine("EACH ONE");
                 var newFinance = await _financeRepository.Create(finance);
-              //  newFinances.Add(newFinance);
+              
             }
             
             return Ok("Ok");
@@ -137,18 +101,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFinance(int id)
         {
-            /*
-            var finance = await _context.Finances.FindAsync(id);
-            if (finance == null)
-            {
-                return NotFound();
-            }
-
-            _context.Finances.Remove(finance);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-            */
+           
             var financeToDelete = await _financeRepository.Delete(id);
 
             if (financeToDelete == null)
@@ -161,7 +114,7 @@ namespace KamtjatkaAPI.Controllers
 
         private bool FinanceExists(int id)
         {
-            //return _context.Finances.Any(e => e.Id == id);
+            
             return _financeRepository.Get(id) != null;
         }
     }

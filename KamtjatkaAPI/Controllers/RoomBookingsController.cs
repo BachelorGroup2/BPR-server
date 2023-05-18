@@ -16,14 +16,10 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class RoomBookingsController : ControllerBase
     {
-        //private readonly vujeeaxiContext _context;
+        
         private readonly IRoomBookingRepository _roomBookingRepository;
 
-        /*public RoomBookingsController(vujeeaxiContext context)
-        {
-            _context = context;
-        }
-        */
+      
         public RoomBookingsController(IRoomBookingRepository roomBookingRepository)
         {
             _roomBookingRepository = roomBookingRepository;
@@ -33,7 +29,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RoomBooking>>> GetRoomBookings()
         {
-            //return await _context.RoomBookings.ToListAsync();
+            
             var roomBookings = await _roomBookingRepository.Get();
             return Ok(roomBookings);
         }
@@ -42,16 +38,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RoomBooking>> GetRoomBooking(int id)
         {
-            /*
-            var roomBooking = await _context.RoomBookings.FindAsync(id);
-
-            if (roomBooking == null)
-            {
-                return NotFound();
-            }
-
-            return roomBooking;
-            */
+          
             var roomBookings = await _roomBookingRepository.Get(id);
 
             if (roomBookings == null)
@@ -67,32 +54,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRoomBooking(int id, RoomBooking roomBooking)
         {
-            /*
-            if (id != roomBooking.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(roomBooking).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RoomBookingExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-            */
+          
             if (id != roomBooking.Id)
             {
                 return BadRequest();
@@ -100,7 +62,8 @@ namespace KamtjatkaAPI.Controllers
 
             await _roomBookingRepository.Update(roomBooking);
 
-            return NoContent();
+          
+            return Ok("PUT successfull");
         }
 
         // POST: api/RoomBookings
@@ -108,26 +71,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<RoomBooking>> PostRoomBooking(RoomBooking roomBooking)
         {
-            /*
-            _context.RoomBookings.Add(roomBooking);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (RoomBookingExists(roomBooking.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetRoomBooking", new { id = roomBooking.Id }, roomBooking);
-            */
+         
             var newRoomBooking = await _roomBookingRepository.Create(roomBooking);
             return CreatedAtAction(nameof(GetRoomBooking), new { id = newRoomBooking.Id }, newRoomBooking);
         }
@@ -136,18 +80,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoomBooking(int id)
         {
-            /*
-            var roomBooking = await _context.RoomBookings.FindAsync(id);
-            if (roomBooking == null)
-            {
-                return NotFound();
-            }
-
-            _context.RoomBookings.Remove(roomBooking);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-            */
+            
             var roomBookingToDelete = await _roomBookingRepository.Delete(id);
 
             if (roomBookingToDelete == null)

@@ -16,14 +16,10 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class SchedulesController : ControllerBase
     {
-        // private readonly vujeeaxiContext _context;
+      
         private readonly IScheduleRepository _scheduleRepository;
 
-        /* public SchedulesController(vujeeaxiContext context)
-         {
-             _context = context;
-         }
-        */
+   
 
         public SchedulesController(IScheduleRepository scheduleRepository)
         {
@@ -34,7 +30,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Schedule>>> GetSchedules()
         {
-            //return await _context.Schedules.ToListAsync();
+           
             var schedule = await _scheduleRepository.Get();
             return Ok(schedule);
         }
@@ -43,15 +39,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Schedule>> GetSchedule(int id)
         {
-            /*var schedule = await _context.Schedules.FindAsync(id);
-
-            if (schedule == null)
-            {
-                return NotFound();
-            }
-
-            return schedule;
-            */
+       
 
             var schedule = await _scheduleRepository.Get(id);
 
@@ -68,32 +56,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSchedule(int id, Schedule schedule)
         {
-            /*
-            if (id != schedule.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(schedule).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ScheduleExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-            */
+            
             if (id != schedule.Id)
             {
                 return BadRequest();
@@ -101,7 +64,8 @@ namespace KamtjatkaAPI.Controllers
 
             await _scheduleRepository.Update(schedule);
 
-            return NoContent();
+         
+            return Ok("PUT successfull");
         }
 
         // POST: api/Schedules
@@ -109,26 +73,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Schedule>> PostSchedule(Schedule schedule)
         {
-            /*
-            _context.Schedules.Add(schedule);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (ScheduleExists(schedule.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetSchedule", new { id = schedule.Id }, schedule);
-            */
+            
             var newSchedule = await _scheduleRepository.Create(schedule);
             return CreatedAtAction(nameof(GetSchedule), new { id = newSchedule.Id }, newSchedule);
         }
@@ -137,18 +82,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSchedule(int id)
         {
-            /*
-            var schedule = await _context.Schedules.FindAsync(id);
-            if (schedule == null)
-            {
-                return NotFound();
-            }
-
-            _context.Schedules.Remove(schedule);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-            */
+          
             var scheduleToDelete = await _scheduleRepository.Delete(id);
 
             if (scheduleToDelete == null)
@@ -161,7 +95,7 @@ namespace KamtjatkaAPI.Controllers
 
         private bool ScheduleExists(int id)
         {
-            //return _context.Schedules.Any(e => e.Id == id);
+            
             return _scheduleRepository.Get(id) != null;
         }
     }

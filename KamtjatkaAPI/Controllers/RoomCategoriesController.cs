@@ -16,14 +16,10 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class RoomCategoriesController : ControllerBase
     {
-        // private readonly vujeeaxiContext _context;
+        
         private readonly IRoomCategoryRepository _roomCategoryRepository;
 
-        /* public RoomCategoriesController(vujeeaxiContext context)
-         {
-             _context = context;
-         }
-        */
+     
 
         public RoomCategoriesController(IRoomCategoryRepository roomCategoryRepository)
         {
@@ -34,7 +30,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RoomCategory>>> GetRoomCategories()
         {
-            //return await _context.RoomCategories.ToListAsync();
+           
             var roomCategories = await _roomCategoryRepository.Get();
             return Ok(roomCategories);
         }
@@ -43,16 +39,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RoomCategory>> GetRoomCategory(int id)
         {
-            /*
-            var roomCategory = await _context.RoomCategories.FindAsync(id);
-
-            if (roomCategory == null)
-            {
-                return NotFound();
-            }
-
-            return roomCategory;
-            */
+          
             var roomCategory = await _roomCategoryRepository.Get(id);
 
             if (roomCategory == null)
@@ -68,32 +55,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRoomCategory(int id, RoomCategory roomCategory)
         {
-            /*
-            if (id != roomCategory.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(roomCategory).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RoomCategoryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-            */
+          
             if (id != roomCategory.Id)
             {
                 return BadRequest();
@@ -101,7 +63,8 @@ namespace KamtjatkaAPI.Controllers
 
             await _roomCategoryRepository.Update(roomCategory);
 
-            return NoContent();
+           
+            return Ok("PUT successfull");
         }
 
         // POST: api/RoomCategories
@@ -109,26 +72,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<RoomCategory>> PostRoomCategory(RoomCategory roomCategory)
         {
-            /*
-            _context.RoomCategories.Add(roomCategory);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (RoomCategoryExists(roomCategory.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetRoomCategory", new { id = roomCategory.Id }, roomCategory);
-            */
+            
             var newRoomCategory = await _roomCategoryRepository.Create(roomCategory);
             return CreatedAtAction(nameof(GetRoomCategory), new { id = newRoomCategory.Id }, newRoomCategory);
         }
@@ -137,18 +81,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoomCategory(int id)
         {
-            /*
-            var roomCategory = await _context.RoomCategories.FindAsync(id);
-            if (roomCategory == null)
-            {
-                return NotFound();
-            }
-
-            _context.RoomCategories.Remove(roomCategory);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-            */
+            
             var roomCategoryToDelete = await _roomCategoryRepository.Delete(id);
 
             if (roomCategoryToDelete == null)
@@ -161,7 +94,7 @@ namespace KamtjatkaAPI.Controllers
 
         private bool RoomCategoryExists(int id)
         {
-            //return _context.RoomCategories.Any(e => e.Id == id);
+            
             return _roomCategoryRepository.Get(id) != null;
         }
     }

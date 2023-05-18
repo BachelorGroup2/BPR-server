@@ -54,7 +54,8 @@ namespace KamtjatkaAPI.Controllers
 
             await _roleRepository.Update(role);
 
-            return NoContent();
+            //return NoContent();
+            return Ok("PUT successfull");
         }
 
         [HttpPost]

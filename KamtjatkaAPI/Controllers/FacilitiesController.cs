@@ -16,14 +16,10 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class FacilitiesController : ControllerBase
     {
-        // private readonly vujeeaxiContext _context;
+        
         private readonly IFacilityRepository _facilityRepository;
 
-        /*  public FacilitiesController(vujeeaxiContext context)
-          {
-              _context = context;
-          }
-        */
+        
         public FacilitiesController(IFacilityRepository facilityRepository)
         {
             _facilityRepository = facilityRepository;
@@ -33,7 +29,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Facility>>> GetFacilities()
         {
-            //return await _context.Facilities.ToListAsync();
+            
             var facilities = await _facilityRepository.Get();
             return Ok(facilities);
         }
@@ -42,16 +38,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Facility>> GetFacility(int id)
         {
-            /*
-            var facility = await _context.Facilities.FindAsync(id);
-
-            if (facility == null)
-            {
-                return NotFound();
-            }
-
-            return facility;
-            */
+           
             var facility = await _facilityRepository.Get(id);
 
             if (facility == null)
@@ -67,32 +54,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFacility(int id, Facility facility)
         {
-            /*
-            if (id != facility.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(facility).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FacilityExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-            */
+          
             if (id != facility.Id)
             {
                 return BadRequest();
@@ -100,7 +62,7 @@ namespace KamtjatkaAPI.Controllers
 
             await _facilityRepository.Update(facility);
 
-            return NoContent();
+            return Ok("PUT successfull");
         }
 
         // POST: api/Facilities
@@ -108,26 +70,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Facility>> PostFacility(Facility facility)
         {
-            /*
-            _context.Facilities.Add(facility);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (FacilityExists(facility.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetFacility", new { id = facility.Id }, facility);
-            */
+           
             var newFacility = await _facilityRepository.Create(facility);
             return CreatedAtAction(nameof(GetFacility), new { id = newFacility.Id }, newFacility);
         }
@@ -136,18 +79,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFacility(int id)
         {
-            /*
-            var facility = await _context.Facilities.FindAsync(id);
-            if (facility == null)
-            {
-                return NotFound();
-            }
-
-            _context.Facilities.Remove(facility);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-            */
+         
             var facilityToDelete = await _facilityRepository.Delete(id);
 
             if (facilityToDelete == null)
@@ -160,7 +92,7 @@ namespace KamtjatkaAPI.Controllers
 
         private bool FacilityExists(int id)
         {
-            //return _context.Facilities.Any(e => e.Id == id);
+            
             return _facilityRepository.Get(id) != null;
         }
     }

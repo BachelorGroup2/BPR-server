@@ -43,16 +43,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Room>> GetRoom(int id)
         {
-            /*
-            var room = await _context.Rooms.FindAsync(id);
-
-            if (room == null)
-            {
-                return NotFound();
-            }
-
-            return room;
-            */
+           
+       
             var room = await _roomRepository.Get(id);
 
             if (room == null)
@@ -68,32 +60,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRoom(int id, Room room)
         {
-            /*
-            if (id != room.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(room).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RoomExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-            */
+       
+       
             if (id != room.Id)
             {
                 return BadRequest();
@@ -101,7 +69,8 @@ namespace KamtjatkaAPI.Controllers
 
             await _roomRepository.Update(room);
 
-            return NoContent();
+          
+            return Ok("PUT successfull");
         }
 
         // POST: api/Rooms
@@ -109,26 +78,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Room>> PostRoom(Room room)
         {
-            /*
-            _context.Rooms.Add(room);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (RoomExists(room.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtAction("GetRoom", new { id = room.Id }, room);
-            */
+           
             var newRoom = await _roomRepository.Create(room);
             return CreatedAtAction(nameof(GetRoom), new { id = newRoom.Id }, newRoom);
         }
@@ -137,18 +87,7 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoom(int id)
         {
-            /*
-            var room = await _context.Rooms.FindAsync(id);
-            if (room == null)
-            {
-                return NotFound();
-            }
-
-            _context.Rooms.Remove(room);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-            */
+           
             var roomToDelete = await _roomRepository.Delete(id);
 
             if (roomToDelete == null)
@@ -161,7 +100,7 @@ namespace KamtjatkaAPI.Controllers
 
         private bool RoomExists(int id)
         {
-            //return _context.Rooms.Any(e => e.Id == id);
+           
             return _roomRepository.Get(id) != null;
         }
     }
