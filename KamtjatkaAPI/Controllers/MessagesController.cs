@@ -19,7 +19,7 @@ namespace KamtjatkaAPI.Controllers
     {
         private readonly IMessagesRepository _messagesRepository;
 
-        public RolesController(IMessagesRepository messagesRepository)
+        public MessagesController(IMessagesRepository messagesRepository)
         {
             _messagesRepository = messagesRepository;
         }
