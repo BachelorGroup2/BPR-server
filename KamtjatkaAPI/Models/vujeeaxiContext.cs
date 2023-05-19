@@ -33,6 +33,8 @@ namespace KamtjatkaAPI.Models
 
         public virtual DbSet<Roles> Roles { get; set; }
 
+        public virtual DbSet<Messages> Messages { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -550,6 +552,29 @@ namespace KamtjatkaAPI.Models
                     .IsRequired()
                     .HasMaxLength(64)
                     .HasColumnName("name");
+            });
+
+            modelBuilder.Entity<Messages>(entity =>
+            {
+                entity.ToTable("messages", "bpr");
+                entity.Property(e => e.Id)
+                .ValueGeneratedNever()
+                .HasColumnName("id");
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(64)
+                    .HasColumnName("email");
+
+                entity.Property(e => e.Subject)
+                    .IsRequired()
+                    .HasMaxLength(64)
+                    .HasColumnName("subject");
+
+                entity.Property(e => e.Message)
+                    .IsRequired()
+                    .HasMaxLength(225)
+                    .HasColumnName("message");
             });
 
             OnModelCreatingPartial(modelBuilder);
