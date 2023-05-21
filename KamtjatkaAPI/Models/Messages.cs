@@ -1,0 +1,13 @@
+using System.Collections.Generic;
+
+namespace KamtjatkaAPI.Models
+{
+    public class Messages
+    {
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Subject { get; set; }
+        public string Message { get; set; }
+
+    }
+}
