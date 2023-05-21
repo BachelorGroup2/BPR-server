@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
 using KamtjatkaAPI.Repositories;
 using Microsoft.AspNetCore.Cors;
@@ -16,10 +12,7 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class SchedulesController : ControllerBase
     {
-      
-        private readonly IScheduleRepository _scheduleRepository;
-
-   
+        private readonly IScheduleRepository _scheduleRepository;   
 
         public SchedulesController(IScheduleRepository scheduleRepository)
         {
@@ -30,8 +23,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Schedule>>> GetSchedules()
         {
-           
             var schedule = await _scheduleRepository.Get();
+
             return Ok(schedule);
         }
 
@@ -39,8 +32,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Schedule>> GetSchedule(int id)
         {
-       
-
             var schedule = await _scheduleRepository.Get(id);
 
             if (schedule == null)
@@ -52,11 +43,9 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // PUT: api/Schedules/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSchedule(int id, Schedule schedule)
         {
-            
             if (id != schedule.Id)
             {
                 return BadRequest();
@@ -64,17 +53,15 @@ namespace KamtjatkaAPI.Controllers
 
             await _scheduleRepository.Update(schedule);
 
-         
             return Ok("PUT successfull");
         }
 
         // POST: api/Schedules
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Schedule>> PostSchedule(Schedule schedule)
         {
-            
             var newSchedule = await _scheduleRepository.Create(schedule);
+
             return CreatedAtAction(nameof(GetSchedule), new { id = newSchedule.Id }, newSchedule);
         }
 
@@ -82,7 +69,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSchedule(int id)
         {
-          
             var scheduleToDelete = await _scheduleRepository.Delete(id);
 
             if (scheduleToDelete == null)
@@ -95,7 +81,6 @@ namespace KamtjatkaAPI.Controllers
 
         private bool ScheduleExists(int id)
         {
-            
             return _scheduleRepository.Get(id) != null;
         }
     }

@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
@@ -104,7 +102,7 @@ namespace KamtjatkaAPI.Models
                     .HasColumnName("password");
 
                 entity.Property(e => e.RoleId)
-               .HasColumnName("roleid");
+                    .HasColumnName("roleid");
             });
 
             modelBuilder.Entity<Appointment>(entity =>

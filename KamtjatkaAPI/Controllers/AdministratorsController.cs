@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
 using KamtjatkaAPI.Repositories;
 using Microsoft.AspNetCore.Cors;
@@ -16,9 +12,7 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class AdministratorsController : ControllerBase
     {
-        
         private readonly IAdministratorRepository _administratorRepository;
-
       
         public AdministratorsController(IAdministratorRepository administratorRepository)
         {
@@ -30,8 +24,8 @@ namespace KamtjatkaAPI.Controllers
         [EnableCors("AllowOrigin")]
         public async Task<ActionResult<IEnumerable<Administrator>>> GetAdministrators()
         {
-            
             var administrators = await _administratorRepository.Get();
+
             return Ok(administrators);
         }
 
@@ -39,8 +33,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Administrator>> GetAdministrator(int id)
         {
-           
-
             var administrator = await _administratorRepository.Get(id);
 
             if (administrator == null)
@@ -56,15 +48,12 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAdministrator(int id, Administrator administrator)
         {
-           
-
             if (id != administrator.Id)
             {
                 return BadRequest();
             }
 
             await _administratorRepository.Update(administrator);
-
            
             return Ok("PUT successfull");
         }
@@ -74,8 +63,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Administrator>> PostAdministrator(Administrator administrator)
         {
-          
             var newAdministrator = await _administratorRepository.Create(administrator);
+
             return CreatedAtAction(nameof(GetAdministrator), new { id = newAdministrator.Id }, newAdministrator);
         }
 
@@ -84,7 +73,6 @@ namespace KamtjatkaAPI.Controllers
         [EnableCors("AllowOrigin")]
         public async Task<IActionResult> DeleteAdministrator(int id)
         {
-            
             var administratorToDelete = await _administratorRepository.Delete(id);
 
             if (administratorToDelete == null)
@@ -97,7 +85,6 @@ namespace KamtjatkaAPI.Controllers
 
         private bool AdministratorExists(int id)
         {
-            
             return _administratorRepository.Get(id) != null;
         }
     }

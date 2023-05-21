@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
 using KamtjatkaAPI.Repositories;
 using Microsoft.AspNetCore.Cors;
@@ -16,10 +12,8 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class FacilitiesController : ControllerBase
     {
-        
         private readonly IFacilityRepository _facilityRepository;
 
-        
         public FacilitiesController(IFacilityRepository facilityRepository)
         {
             _facilityRepository = facilityRepository;
@@ -29,8 +23,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Facility>>> GetFacilities()
         {
-            
             var facilities = await _facilityRepository.Get();
+
             return Ok(facilities);
         }
 
@@ -38,7 +32,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Facility>> GetFacility(int id)
         {
-           
             var facility = await _facilityRepository.Get(id);
 
             if (facility == null)
@@ -54,7 +47,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFacility(int id, Facility facility)
         {
-          
             if (id != facility.Id)
             {
                 return BadRequest();
@@ -70,8 +62,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Facility>> PostFacility(Facility facility)
         {
-           
             var newFacility = await _facilityRepository.Create(facility);
+
             return CreatedAtAction(nameof(GetFacility), new { id = newFacility.Id }, newFacility);
         }
 
@@ -79,7 +71,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFacility(int id)
         {
-         
             var facilityToDelete = await _facilityRepository.Delete(id);
 
             if (facilityToDelete == null)
@@ -92,7 +83,6 @@ namespace KamtjatkaAPI.Controllers
 
         private bool FacilityExists(int id)
         {
-            
             return _facilityRepository.Get(id) != null;
         }
     }

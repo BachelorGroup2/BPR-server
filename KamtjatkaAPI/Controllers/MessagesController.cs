@@ -1,14 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 using KamtjatkaAPI.Models;
 using KamtjatkaAPI.Repositories;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace KamtjatkaAPI.Controllers
 {
@@ -28,6 +23,7 @@ namespace KamtjatkaAPI.Controllers
         public async Task<ActionResult<IEnumerable<Messages>>> GetMessages()
         {
             var messages = await _messagesRepository.Get();
+
             return Ok(messages);
         }
 
@@ -54,7 +50,6 @@ namespace KamtjatkaAPI.Controllers
 
             await _messagesRepository.Update(message);
 
-            //return NoContent();
             return Ok("PUT successfull");
         }
 
@@ -62,6 +57,7 @@ namespace KamtjatkaAPI.Controllers
         public async Task<ActionResult<Messages>> PostMessage(Messages message)
         {
             var newMessage = await _messagesRepository.Create(message);
+
             return CreatedAtAction(nameof(GetMessages), new { id = newMessage.Id }, newMessage);
         }
 

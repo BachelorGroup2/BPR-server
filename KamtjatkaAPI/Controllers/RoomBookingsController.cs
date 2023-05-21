@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
 using KamtjatkaAPI.Repositories;
 using Microsoft.AspNetCore.Cors;
@@ -16,9 +12,7 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class RoomBookingsController : ControllerBase
     {
-        
         private readonly IRoomBookingRepository _roomBookingRepository;
-
       
         public RoomBookingsController(IRoomBookingRepository roomBookingRepository)
         {
@@ -29,8 +23,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RoomBooking>>> GetRoomBookings()
         {
-            
             var roomBookings = await _roomBookingRepository.Get();
+
             return Ok(roomBookings);
         }
 
@@ -38,7 +32,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RoomBooking>> GetRoomBooking(int id)
         {
-          
             var roomBookings = await _roomBookingRepository.Get(id);
 
             if (roomBookings == null)
@@ -50,29 +43,25 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // PUT: api/RoomBookings/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRoomBooking(int id, RoomBooking roomBooking)
         {
-          
             if (id != roomBooking.Id)
             {
                 return BadRequest();
             }
 
             await _roomBookingRepository.Update(roomBooking);
-
           
             return Ok("PUT successfull");
         }
 
         // POST: api/RoomBookings
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<RoomBooking>> PostRoomBooking(RoomBooking roomBooking)
         {
-         
             var newRoomBooking = await _roomBookingRepository.Create(roomBooking);
+
             return CreatedAtAction(nameof(GetRoomBooking), new { id = newRoomBooking.Id }, newRoomBooking);
         }
 
@@ -80,7 +69,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoomBooking(int id)
         {
-            
             var roomBookingToDelete = await _roomBookingRepository.Delete(id);
 
             if (roomBookingToDelete == null)
@@ -93,7 +81,6 @@ namespace KamtjatkaAPI.Controllers
 
         private bool RoomBookingExists(int id)
         {
-            // return _context.RoomBookings.Any(e => e.Id == id);
             return _roomBookingRepository.Get(id) != null;
         }
     }

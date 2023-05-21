@@ -1,6 +1,5 @@
 ﻿using KamtjatkaAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,18 +37,16 @@ namespace KamtjatkaAPI.Repositories
 
         public async Task<IEnumerable<object>> GetInvoiceData()
         {
-
             return await appDbContext.RoomBookings
-        .Include(f => f.Room)
-        .Include(f => f.Room.RoomCategory)
-        .Include(f => f.Customer)
-        .Select(f => new
-        {
-            rentprice = f.Room.RoomCategory.RentPrice,
-            CustomerId = f.Customer.Id
-        })
-        .ToListAsync();
-
+            .Include(f => f.Room)
+            .Include(f => f.Room.RoomCategory)
+            .Include(f => f.Customer)
+            .Select(f => new
+            {
+                rentprice = f.Room.RoomCategory.RentPrice,
+                CustomerId = f.Customer.Id
+            })
+            .ToListAsync();
         }
     }
 }

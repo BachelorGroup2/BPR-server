@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using KamtjatkaAPI.Models;
 using KamtjatkaAPI.Repositories;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace KamtjatkaAPI.Controllers
 {
@@ -28,6 +23,7 @@ namespace KamtjatkaAPI.Controllers
         public async Task<ActionResult<IEnumerable<Roles>>> GetRoles()
         {
             var roles = await _roleRepository.Get();
+
             return Ok(roles);
         }
 
@@ -54,7 +50,6 @@ namespace KamtjatkaAPI.Controllers
 
             await _roleRepository.Update(role);
 
-            //return NoContent();
             return Ok("PUT successfull");
         }
 
@@ -62,6 +57,7 @@ namespace KamtjatkaAPI.Controllers
         public async Task<ActionResult<Roles>> PostRole(Roles role)
         {
             var newRole = await _roleRepository.Create(role);
+
             return CreatedAtAction(nameof(GetRole), new { id = newRole.Id }, newRole);
         }
 

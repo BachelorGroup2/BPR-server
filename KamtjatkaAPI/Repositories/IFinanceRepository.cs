@@ -1,12 +1,10 @@
 ﻿using KamtjatkaAPI.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace KamtjatkaAPI.Repositories
 {
-   public interface IFinanceRepository : IRepositoryBase<Finance>
+    public interface IFinanceRepository : IRepositoryBase<Finance>
     {
         Task<IEnumerable<Finance>> GetFinances();
         Task<IEnumerable<object>> GetInvoiceData();

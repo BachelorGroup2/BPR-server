@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
 using KamtjatkaAPI.Repositories;
 using Microsoft.AspNetCore.Cors;
@@ -17,7 +13,6 @@ namespace KamtjatkaAPI.Controllers
     public class CustomersController : ControllerBase
     {
         private readonly ICustomerRepository _customerRepository;
-
         
         public CustomersController(ICustomerRepository customerRepository)
         {
@@ -28,8 +23,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
         {
-            
             var customers = await _customerRepository.Get();
+
             return Ok(customers);
         }
 
@@ -52,8 +47,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCustomer(int id, Customer customer)
         {
-            
-               
             if (id != customer.Id)
             {
                 return BadRequest();
@@ -69,8 +62,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Customer>> PostCustomer(Customer customer)
         {
-           
             var newCustomer = await _customerRepository.Create(customer);
+
             return CreatedAtAction(nameof(GetCustomer), new { id = newCustomer.Id }, newCustomer);
         }
 
@@ -78,7 +71,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCustomer(int id)
         {
-            
             var customerToDelete = await _customerRepository.Delete(id);
 
             if (customerToDelete == null)
@@ -91,7 +83,6 @@ namespace KamtjatkaAPI.Controllers
 
         private bool CustomerExists(int id)
         {
-            
             return _customerRepository.Get(id) != null;
         }
     }

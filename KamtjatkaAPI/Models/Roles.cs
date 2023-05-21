@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace KamtjatkaAPI.Models
+﻿namespace KamtjatkaAPI.Models
 {
     public class Roles
     {

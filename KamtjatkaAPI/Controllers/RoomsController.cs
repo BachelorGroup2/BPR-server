@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
 using KamtjatkaAPI.Repositories;
 using Microsoft.AspNetCore.Cors;
@@ -16,14 +12,7 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class RoomsController : ControllerBase
     {
-        //private readonly vujeeaxiContext _context;
         private readonly IRoomRepository _roomRepository;
-
-        /*public RoomsController(vujeeaxiContext context)
-        {
-            _context = context;
-        }
-        */
 
         public RoomsController(IRoomRepository roomRepository)
         {
@@ -34,8 +23,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
         {
-            //return await _context.Rooms.ToListAsync();
             var rooms = await _roomRepository.Get();
+
             return Ok(rooms);
         }
 
@@ -43,8 +32,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Room>> GetRoom(int id)
         {
-           
-       
             var room = await _roomRepository.Get(id);
 
             if (room == null)
@@ -56,30 +43,25 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // PUT: api/Rooms/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRoom(int id, Room room)
-        {
-       
-       
+        {       
             if (id != room.Id)
             {
                 return BadRequest();
             }
 
             await _roomRepository.Update(room);
-
           
             return Ok("PUT successfull");
         }
 
         // POST: api/Rooms
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Room>> PostRoom(Room room)
         {
-           
             var newRoom = await _roomRepository.Create(room);
+
             return CreatedAtAction(nameof(GetRoom), new { id = newRoom.Id }, newRoom);
         }
 
@@ -87,7 +69,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoom(int id)
         {
-           
             var roomToDelete = await _roomRepository.Delete(id);
 
             if (roomToDelete == null)
@@ -100,7 +81,6 @@ namespace KamtjatkaAPI.Controllers
 
         private bool RoomExists(int id)
         {
-           
             return _roomRepository.Get(id) != null;
         }
     }

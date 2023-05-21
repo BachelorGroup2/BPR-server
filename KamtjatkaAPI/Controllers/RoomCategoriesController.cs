@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
 using KamtjatkaAPI.Repositories;
 using Microsoft.AspNetCore.Cors;
@@ -16,10 +12,7 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class RoomCategoriesController : ControllerBase
     {
-        
         private readonly IRoomCategoryRepository _roomCategoryRepository;
-
-     
 
         public RoomCategoriesController(IRoomCategoryRepository roomCategoryRepository)
         {
@@ -30,8 +23,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RoomCategory>>> GetRoomCategories()
         {
-           
             var roomCategories = await _roomCategoryRepository.Get();
+
             return Ok(roomCategories);
         }
 
@@ -39,7 +32,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RoomCategory>> GetRoomCategory(int id)
         {
-          
             var roomCategory = await _roomCategoryRepository.Get(id);
 
             if (roomCategory == null)
@@ -51,29 +43,25 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // PUT: api/RoomCategories/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRoomCategory(int id, RoomCategory roomCategory)
         {
-          
             if (id != roomCategory.Id)
             {
                 return BadRequest();
             }
 
             await _roomCategoryRepository.Update(roomCategory);
-
            
             return Ok("PUT successfull");
         }
 
         // POST: api/RoomCategories
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<RoomCategory>> PostRoomCategory(RoomCategory roomCategory)
         {
-            
             var newRoomCategory = await _roomCategoryRepository.Create(roomCategory);
+
             return CreatedAtAction(nameof(GetRoomCategory), new { id = newRoomCategory.Id }, newRoomCategory);
         }
 
@@ -81,7 +69,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoomCategory(int id)
         {
-            
             var roomCategoryToDelete = await _roomCategoryRepository.Delete(id);
 
             if (roomCategoryToDelete == null)
@@ -94,7 +81,6 @@ namespace KamtjatkaAPI.Controllers
 
         private bool RoomCategoryExists(int id)
         {
-            
             return _roomCategoryRepository.Get(id) != null;
         }
     }

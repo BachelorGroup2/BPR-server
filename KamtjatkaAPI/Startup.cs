@@ -1,17 +1,10 @@
 using KamtjatkaAPI.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Repositories;
 
@@ -29,11 +22,11 @@ namespace KamtjatkaAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             //retrieves connection string from appsettings
             services.AddDbContext<vujeeaxiContext>(options =>
             options.UseNpgsql(Configuration.GetConnectionString("dbconn")));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "KamtjatkaAPI", Version = "v1" });
@@ -47,7 +40,6 @@ namespace KamtjatkaAPI
                                       .WithOrigins("http://localhost:3000", "http://localhost:3000/BachelorWebApp")
                                       .AllowAnyHeader());
             });
-
 
             services.AddScoped<IAdministratorRepository, AdministratorRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();

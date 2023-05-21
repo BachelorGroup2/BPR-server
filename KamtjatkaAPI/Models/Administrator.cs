@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using KamtjatkaAPI.Models;
-using KamtjatkaAPI.Repositories;
+
 #nullable disable
 
 namespace KamtjatkaAPI.Models

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
 using KamtjatkaAPI.Repositories;
 using Microsoft.AspNetCore.Cors;
@@ -16,10 +12,7 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class AppointmentsController : ControllerBase
     {
-        
         private readonly IAppointmentRepository _appointmentRepository;
-
-       
 
         public AppointmentsController(IAppointmentRepository appointmentRepository)
         {
@@ -30,8 +23,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Appointment>>> GetAppointments()
         {
-            
             var appointments = await _appointmentRepository.Get();
+
             return Ok(appointments);
         }
 
@@ -39,7 +32,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Appointment>> GetAppointment(int id)
         {
-            
             var appointment = await _appointmentRepository.Get(id);
 
             if (appointment == null)
@@ -55,14 +47,12 @@ namespace KamtjatkaAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAppointment(int id, Appointment appointment)
         {
-            
             if (id != appointment.Id)
             {
                 return BadRequest();
             }
 
             await _appointmentRepository.Update(appointment);
-
            
             return Ok("PUT successfull");
         }
@@ -72,8 +62,8 @@ namespace KamtjatkaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Appointment>> PostAppointment(Appointment appointment)
         {
-          
             var newAppointment = await _appointmentRepository.Create(appointment);
+
             return CreatedAtAction(nameof(GetAppointment), new { id = newAppointment.Id }, newAppointment);
         }
 
@@ -93,7 +83,6 @@ namespace KamtjatkaAPI.Controllers
 
         private bool AppointmentExists(int id)
         {
-            
             return _appointmentRepository.Get(id) != null;
         }
     }

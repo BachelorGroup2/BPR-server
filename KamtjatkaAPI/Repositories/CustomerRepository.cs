@@ -1,14 +1,12 @@
 ﻿using KamtjatkaAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace KamtjatkaAPI.Repositories
 {
-
-        public class CustomerRepository : RepositoryBase<Customer>, ICustomerRepository
+    public class CustomerRepository : RepositoryBase<Customer>, ICustomerRepository
     {
         private readonly vujeeaxiContext appDbContext;
         public CustomerRepository(vujeeaxiContext appDbContext)

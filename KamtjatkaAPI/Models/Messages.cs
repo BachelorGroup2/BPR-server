@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace KamtjatkaAPI.Models
 {
     public class Messages

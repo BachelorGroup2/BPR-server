@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using KamtjatkaAPI.Models;
 using KamtjatkaAPI.Repositories;
 using Microsoft.AspNetCore.Cors;
@@ -16,10 +12,8 @@ namespace KamtjatkaAPI.Controllers
     [EnableCors("AllowOrigin")]
     public class FinancesController : ControllerBase
     {
-        
         private readonly IFinanceRepository _financeRepository;
 
-      
         public FinancesController(IFinanceRepository financeRepository)
         {
             _financeRepository = financeRepository;
@@ -29,20 +23,18 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Finance>>> GetFinances()
         {
-       
             var finances = await _financeRepository.GetFinances();
+
             return Ok(finances);
         }
-
-
 
         // GET: api/Finances/getData
         [Route("getData")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<object>>> GetFinanceData()
         {
-
             var finances = await _financeRepository.GetInvoiceData();
+
             return Ok(finances);
         }
 
@@ -50,7 +42,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Finance>> GetFinance(int id)
         {
-            
             var finances = await _financeRepository.Get(id);
 
             if (finances == null)
@@ -62,36 +53,26 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // PUT: api/Finances/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFinance(int id, Finance finance)
         {
-          
-          
             if (id != finance.Id)
             {
                 return BadRequest();
             }
 
             await _financeRepository.Update(finance);
-
             
             return Ok("PUT successfull");
         }
 
         // POST: api/Finances
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<List<Finance>>> PostFinance(IEnumerable<Finance> finances)
         {
-            Console.WriteLine("SADASDSADSAD");
-
-           
             foreach (var finance in finances)
             {
-                Console.WriteLine("EACH ONE");
-                var newFinance = await _financeRepository.Create(finance);
-              
+                var newFinance = await _financeRepository.Create(finance);              
             }
             
             return Ok("Ok");
@@ -101,7 +82,6 @@ namespace KamtjatkaAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFinance(int id)
         {
-           
             var financeToDelete = await _financeRepository.Delete(id);
 
             if (financeToDelete == null)
@@ -114,7 +94,6 @@ namespace KamtjatkaAPI.Controllers
 
         private bool FinanceExists(int id)
         {
-            
             return _financeRepository.Get(id) != null;
         }
     }
