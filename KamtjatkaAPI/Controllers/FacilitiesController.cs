@@ -43,7 +43,6 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // PUT: api/Facilities/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFacility(int id, Facility facility)
         {
@@ -58,7 +57,6 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // POST: api/Facilities
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Facility>> PostFacility(Facility facility)
         {

@@ -44,7 +44,6 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // PUT: api/Administrators/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAdministrator(int id, Administrator administrator)
         {
@@ -59,7 +58,6 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // POST: api/Administrators
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Administrator>> PostAdministrator(Administrator administrator)
         {

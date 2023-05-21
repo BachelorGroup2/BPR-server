@@ -43,7 +43,6 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // PUT: api/FinanceCategories/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFinanceCategory(int id, FinanceCategory financeCategory)
         {
@@ -58,7 +57,6 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // POST: api/FinanceCategories
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<FinanceCategory>> PostFinanceCategory(FinanceCategory financeCategory)
         {
