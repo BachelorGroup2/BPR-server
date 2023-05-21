@@ -43,7 +43,6 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // PUT: api/AppointmentCategories/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAppointmentCategory(int id, AppointmentCategory appointmentCategory)
         {
@@ -58,7 +57,6 @@ namespace KamtjatkaAPI.Controllers
         }
 
         // POST: api/AppointmentCategories
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<AppointmentCategory>> PostAppointmentCategory(AppointmentCategory appointmentCategory)
         {
