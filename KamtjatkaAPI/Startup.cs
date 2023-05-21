@@ -29,8 +29,6 @@ namespace KamtjatkaAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
-
 
             services.AddControllers();
             //retrieves connection string from appsettings
@@ -43,13 +41,11 @@ namespace KamtjatkaAPI
 
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowOrigin", builder =>
-                {
-                    builder.AllowAnyOrigin()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials();
-                });
+                options.AddPolicy("AllowOrigin",
+                    builder => builder.AllowAnyOrigin()
+                                      .AllowAnyMethod()
+                                      .WithOrigins("http://localhost:3000", "http://localhost:3000/BachelorWebApp")
+                                      .AllowAnyHeader());
             });
 
 
@@ -66,7 +62,6 @@ namespace KamtjatkaAPI
             services.AddScoped<IRoomCategoryRepository, RoomCategoryRepository>();
             services.AddScoped<IScheduleRepository, ScheduleRepository>();
             services.AddScoped<IRolesRepository, RolesRepository>();
-            services.AddScoped<IMessagesRepository, MessagesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
